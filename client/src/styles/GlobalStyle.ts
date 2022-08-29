@@ -3,8 +3,21 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
-html, body {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+a{
+    text-decoration:none;
+    color:inherit;
+}
+input{
+    border: 1px solid rgb(186,191,196);
+    :focus { 
+        outline: none !important; 
+        border-color: #94caf3;
+        box-shadow: 0 0 0px 4px #d6edfc;
+    }
 }
 `;
 
