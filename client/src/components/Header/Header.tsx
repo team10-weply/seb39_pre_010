@@ -1,16 +1,15 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import HeaderLogoSrc from '../../assets/images/header_logo.png';
+import { Link } from 'react-router-dom';
 
 const Line = styled.div`
-  box-sizing: border-box;
   width: 100%;
   height: 3px;
   background-color: #f48024;
 `;
 
 const Header_container = styled.header`
-  box-sizing: border-box;
   width: 100%;
   height: 47px;
   background-color: yellow;
@@ -40,12 +39,7 @@ const SearchInput = styled.input`
   width: 100%;
   height: 30px;
   border-radius: 3px;
-  border: 1px solid black;
 `;
-
-// export const GlobalStyle = createGlobalStyle`
-//   body{padding:0; margin:0}
-// `;
 
 const Header = () => {
   return (
@@ -53,9 +47,11 @@ const Header = () => {
       <Line />
       <Header_container>
         <Wrapper>
-          <a href="#">
-            <Logo src={HeaderLogoSrc} />
-          </a>
+          <Link to="/">
+            <a href="#">
+              <Logo src={HeaderLogoSrc} />
+            </a>
+          </Link>
           <form action="" className="search">
             <SearchInput type="text" placeholder="Search..." />
           </form>
