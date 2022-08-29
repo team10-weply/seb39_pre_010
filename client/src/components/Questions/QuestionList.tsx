@@ -8,6 +8,7 @@ const QuestionRow = styled.div`
   background-color: aquamarine;
   display: flex;
   height: 106px;
+  flex: none;
 `;
 
 const StateColumn = styled.div`
@@ -37,7 +38,7 @@ const QuestionTitleAear = styled.div`
   }
   h2 > a {
     font-size: 1.1rem;
-    color: #205a9d;
+    color: rgb(0, 116, 204);
     line-height: 24px;
   }
   h2 > a:hover {
