@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.SecurityContextHolderFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -40,24 +41,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // http.addFilterBefore(new FirstFilter(), SecurityContextHolderFilter.class); // 주석 처리 or 제거
-        http.csrf().disable();
-//        http.cors();
-//        http.headers().frameOptions().disable();
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-        http
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.cors();
+        http.headers().frameOptions().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .formLogin().disable()
                 .httpBasic().disable()
-                .apply(new CustomDsl());
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/api/v1/user/**")
-//                .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-//                .antMatchers("/api/v1/manager/**")
-//                .access("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-//                .antMatchers("/api/v1/admin/**")
-//                .access("hasRole('ROLE_ADMIN')")
-//                .anyRequest().permitAll();
+                .apply(new CustomDsl())
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/v1/user/**")
+                .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/v1/manager/**")
+                .access("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/v1/admin/**")
+                .access("hasRole('ROLE_ADMIN')")
+                .anyRequest().permitAll();
         return http.build();
     }
 
