@@ -43,7 +43,8 @@ public class SecurityConfig {
 //                .and()
 //                .logout()
 //                .permitAll();
-        http.csrf().disable();
+//        http.csrf().disable();
+        http.cors();
         http.headers().frameOptions().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
