@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-//@RequestMapping("/users")
+@RequestMapping("/users")
 @Validated
 @Slf4j
 public class MemberController {
@@ -29,12 +29,17 @@ public class MemberController {
         this.mapper = mapper;
     }
 
-//    @GetMapping("/login")
-//    public @ResponseBody String login() {
-//        return "login";
-//    }
+    @GetMapping("/login")
+    public @ResponseBody String login() {
+        return "login";
+    }
 
-    @PostMapping("/new-user")
+    @GetMapping("/logout")
+    public @ResponseBody String logout() {
+        return "logout";
+    }
+
+    @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
         Member member = mapper.memberPostToMember(requestBody);
 
@@ -46,7 +51,7 @@ public class MemberController {
                 HttpStatus.CREATED);
     }
 
-    @PatchMapping("/users/{member-id}")
+    @PatchMapping("/{member-id}")
     public ResponseEntity patchMember(
             @PathVariable("member-id") @Positive long memberId,
             @Valid @RequestBody MemberDto.Patch requestBody) {
@@ -60,7 +65,7 @@ public class MemberController {
                 , HttpStatus.OK);
     }
 
-    @DeleteMapping("/users/{member-id}")
+    @DeleteMapping("/{member-id}")
     public ResponseEntity deleteMember(
             @PathVariable("member-id") @Positive long memberId) {
         memberService.deleteMember(memberId);

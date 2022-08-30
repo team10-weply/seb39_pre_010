@@ -23,11 +23,6 @@ public class RestApiController {
         return "<h1>info</h1>";
     }
 
-//    @GetMapping("/user")
-//    public String user() {
-//        return "user";
-//    }
-
     @GetMapping("/admin")
     public @ResponseBody String admin() {
         return "admin";
