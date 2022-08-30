@@ -4,9 +4,9 @@ import LeftbarAdSrc from '../../assets/images/leftbar_ad.png';
 
 const Left_container = styled.div`
   height: 100vh;
-  background-color: green;
   color: #b4b0af;
   width: 164px;
+  border-right: 1px solid rgb(227, 230, 232); ;
 `;
 
 const Sticky_container = styled.div`

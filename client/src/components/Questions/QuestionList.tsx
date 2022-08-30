@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import TagAndId from './TagAndId';
 
 const QuestionRow = styled.div`
-  border-top: 1px solid gray;
+  border-top: 1px solid rgb(227, 230, 232);
   padding: 10px 15px;
-  background-color: aquamarine;
   display: flex;
   height: 106px;
   flex: none;
@@ -17,7 +16,6 @@ const StateColumn = styled.div`
   align-items: flex-end;
   justify-content: center;
   width: 110px;
-  background-color: blue;
   margin-right: 15px;
 `;
 
@@ -25,16 +23,14 @@ const QuestionStat = styled.div`
   text-align: center;
   font-size: 0.85rem;
   display: inline-block;
-  background-color: antiquewhite;
   height: 25px;
   line-height: 25px;
 `;
 const QuestionTitleAear = styled.div`
   width: 100%;
-  background-color: brown;
-  margin-top: 18px;
+  margin-top: 0.4rem;
   h2 {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
   h2 > a {
     font-size: 1.1rem;

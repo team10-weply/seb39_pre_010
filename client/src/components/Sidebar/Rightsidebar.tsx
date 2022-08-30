@@ -7,7 +7,6 @@ const RightContainer = styled.div`
   width: 300px;
   height: 100%;
   margin: 0 0 0 15px;
-  background-color: aqua;
   flex: none;
   @media screen and (max-width: 1050px) {
     display: none;

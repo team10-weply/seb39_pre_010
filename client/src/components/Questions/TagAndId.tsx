@@ -23,9 +23,7 @@ const Tag = styled.div`
   }
 `;
 
-const Id = styled.div`
-  background-color: blue;
-`;
+const Id = styled.div``;
 
 const TagAndId = () => {
   return (
