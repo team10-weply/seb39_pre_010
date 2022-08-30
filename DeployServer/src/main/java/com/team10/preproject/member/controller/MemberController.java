@@ -29,15 +29,7 @@ public class MemberController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/login")
-    public @ResponseBody String login() {
-        return "login";
-    }
 
-    @GetMapping("/logout")
-    public @ResponseBody String logout() {
-        return "logout";
-    }
 
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {

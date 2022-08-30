@@ -38,6 +38,10 @@ public class RestApiController {
         return "<h1>token</h1>";
     }
 
+    @GetMapping("/logout")
+    public @ResponseBody String logout() {
+        return "logout";
+    }
 
 //    @PostMapping("/join")
 //    public String join(@RequestBody Member member) {
