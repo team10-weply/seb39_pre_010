@@ -3,19 +3,14 @@ import styled from 'styled-components';
 import FooterLogoSrc from '../../assets/images/footer_logo.png';
 
 const Footer_container = styled.footer`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI Adjusted',
+    'Segoe UI', 'Liberation Sans', sans-serif;
   position: relative;
   box-sizing: border-box;
   width: 100%;
   height: 322px;
   background-color: #232629;
   padding: 8px;
-  a {
-    color: #babfc4;
-    text-decoration: none;
-    &:hover {
-      color: #d2d7dc;
-    }
-  }
 `;
 const Wrapper = styled.div`
   max-width: 1264px;
@@ -23,26 +18,42 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: 20px 10px 10px 10px;
   display: flex;
-  flex-flow: row wrap;
+  justify-content: space-between;
+`;
+
+const Logo = styled.img`
+  height: 60px;
 `;
 
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: darkblue;
-  width: 80%;
+  width: 60%;
   font-size: 0.85rem;
   h5 {
     font-weight: bold;
     margin-bottom: 1rem;
   }
   li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
+    font-weight: 100;
+    a:hover {
+      color: #d2d7dc;
+    }
+  }
+  a {
+    color: rgb(186, 191, 196);
+    text-decoration: none;
   }
 `;
-const Logo = styled.img`
-  height: 60px;
-  background-color: white;
+
+const SNS = styled.div`
+  color: rgb(145, 153, 161);
+  font-size: 0.7rem;
+  li {
+    display: inline-block;
+    margin-right: 1rem;
+  }
 `;
 
 const Footer = () => {
@@ -146,6 +157,17 @@ const Footer = () => {
             </ul>
           </div>
         </Flex>
+        <SNS>
+          <div>
+            <ul>
+              <li>Blog</li>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>LinkedIn</li>
+              <li>Instagram</li>
+            </ul>
+          </div>
+        </SNS>
       </Wrapper>
     </Footer_container>
   );
