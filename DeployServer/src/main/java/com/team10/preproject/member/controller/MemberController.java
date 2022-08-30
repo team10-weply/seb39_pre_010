@@ -8,6 +8,8 @@ import com.team10.preproject.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/v1/users")
+//@RequestMapping("/users")
 @Validated
 @Slf4j
 public class MemberController {
@@ -27,18 +29,24 @@ public class MemberController {
         this.mapper = mapper;
     }
 
+//    @GetMapping("/login")
+//    public @ResponseBody String login() {
+//        return "login";
+//    }
+
     @PostMapping("/new-user")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
         Member member = mapper.memberPostToMember(requestBody);
 
         Member createMember = memberService.createMember(member);
         MemberDto.Response response = mapper.memberToMemberResponse(createMember);
+
         return new ResponseEntity<>(
                 new SingleResponseDto<>(response),
                 HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{member-id}")
+    @PatchMapping("/users/{member-id}")
     public ResponseEntity patchMember(
             @PathVariable("member-id") @Positive long memberId,
             @Valid @RequestBody MemberDto.Patch requestBody) {
@@ -52,7 +60,7 @@ public class MemberController {
                 , HttpStatus.OK);
     }
 
-    @DeleteMapping("/{member-id}")
+    @DeleteMapping("/users/{member-id}")
     public ResponseEntity deleteMember(
             @PathVariable("member-id") @Positive long memberId) {
         memberService.deleteMember(memberId);

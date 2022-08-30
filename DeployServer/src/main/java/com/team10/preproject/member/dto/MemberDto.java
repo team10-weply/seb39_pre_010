@@ -19,7 +19,7 @@ public class MemberDto {
 
         @NotBlank(message = "Name cannot be null")
         @Length(min=2, max = 20)
-        private String name;
+        private String nickname;
 
         @NotBlank(message = "Password cannot be null")
         @Length(min=8, message = "Passwords must be at least 8 characters long.")
@@ -33,7 +33,7 @@ public class MemberDto {
         private long memberId;
 
         @NotBlank(message = "Name cannot be null")
-        private String name;
+        private String nickname;
 
         @NotBlank(message = "Password cannot be null")
         @Length(min=8, message = "Passwords must be at least 8 characters long.")
@@ -50,8 +50,9 @@ public class MemberDto {
     @Getter
     public static class Response {
         private long memberId;
+        private String username;
         private String email;
-        private String name;
+        private String nickname;
         private String password;
 //        private Member.MemberStatus memberStatus;
 

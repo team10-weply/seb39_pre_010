@@ -5,10 +5,15 @@ import com.team10.preproject.exception.ExceptionCode;
 import com.team10.preproject.helper.event.MemberRegistrationApplicationEvent;
 import com.team10.preproject.member.entity.Member;
 import com.team10.preproject.member.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,7 +24,12 @@ import java.util.Optional;
 @Transactional
 @Service
 public class MemberService {
-    private final MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private final ApplicationEventPublisher publisher;
 
     public MemberService(MemberRepository memberRepository,
@@ -30,6 +40,9 @@ public class MemberService {
 
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
+        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        member.setRoles("ROLE_USER");
+        member.setUsername(member.getEmail());
         Member savedMember = memberRepository.save(member);
 
         publisher.publishEvent(new MemberRegistrationApplicationEvent(this, savedMember));
@@ -40,8 +53,8 @@ public class MemberService {
     public Member updateMember(Member member) {
         Member findMember = findVerifiedMember(member.getMemberId());
 
-        Optional.ofNullable(member.getName())
-                .ifPresent(name -> findMember.setName(name));
+        Optional.ofNullable(member.getUsername())
+                .ifPresent(nickname -> findMember.setNickname(nickname));
         Optional.ofNullable(member.getPassword())
                 .ifPresent(password -> findMember.setPassword(password));
 //        Optional.ofNullable(member.getMemberStatus())
@@ -75,8 +88,8 @@ public class MemberService {
     }
 
     private void verifyExistsEmail(String email) {
-        Optional<Member> member = memberRepository.findByEmail((email));
-        if (member.isPresent())
+        Member member = memberRepository.findByEmail((email));
+        if (member != null)
             throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
 }

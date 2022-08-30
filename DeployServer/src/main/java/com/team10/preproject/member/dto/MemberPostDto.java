@@ -15,7 +15,7 @@ public class MemberPostDto {
 
     @NotBlank(message = "Name cannot be null")
     @Length(min=2, max = 20)
-    private String name;
+    private String nickname;
 
     @NotBlank(message = "Password cannot be null")
     @Length(min=8, message = "Passwords must be at least 8 characters long.")

@@ -12,7 +12,7 @@ public class MemberPatchDto {
     private long memberId;
 
     @NotBlank(message = "Name cannot be null")
-    private String name;
+    private String nickname;
 
     @NotBlank(message = "Password cannot be null")
     @Length(min=8, message = "Passwords must be at least 8 characters long.")
