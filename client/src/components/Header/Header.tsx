@@ -12,9 +12,12 @@ const Line = styled.div`
 const Header_container = styled.header`
   width: 100%;
   height: 47px;
-  background-color: yellow;
+  background-color: hsl(210, 8%, 97.5%);
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
   padding: 10px;
   display: flex;
+  z-index: 99;
   form {
     width: 100%;
     margin: 0 20px;
