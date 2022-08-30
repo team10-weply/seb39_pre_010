@@ -46,6 +46,8 @@ public class SecurityConfig {
         http.headers().frameOptions().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .formLogin().loginPage("/users/login")
+                .and()
                 .formLogin().disable()
                 .httpBasic().disable()
                 .apply(new CustomDsl())
