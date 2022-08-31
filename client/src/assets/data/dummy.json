@@ -1,0 +1,36 @@
+{
+  "question": [
+    {
+      "id": 1,
+      "member_id": "Juan Carlos Apx",
+      "title": "how to generate more than one value in a QR using ZXing in Xamarin?",
+      "content": "I'm using ZXing to generate a QR code. A single value makes it perfect, but I don't know how to generate more than one value.",
+      "created_at": "today",
+      "updated_at": "today"
+    },
+    {
+      "id": 2,
+      "member_id": "domster",
+      "title": "Kubernetes port-forward error when forwarding a port locally",
+      "content": "I am stuck with trying to forward my local TCP port 8080 to the deployed backend service port of 8080 too. I am not too sure what is wrong. Have been looking for solutions for the past hour but can't seem to find a fix. Tried to redo the entire setup i.e. Creating a cluster, loading a local Docker image to the node, deploying a backend development and service, but to no avail.",
+      "created_at": "today",
+      "updated_at": "today"
+    },
+    {
+      "id": 3,
+      "member_id": "AbhiGupta",
+      "title": "Django setting debug=False breaks href links",
+      "content": "I'm using ZXing to generate a QR code. A single value makes it perfect, but I don't know how to generate more than one value.",
+      "created_at": "today",
+      "updated_at": "today"
+    },
+    {
+      "id": 4,
+      "member_id": "JNevill",
+      "title": "Filtering out just decimals form html",
+      "content": "I want to get this html  [{'grade_1': '67.81%', 'tag_a_data-analysis': '113087042', 'academic_class': 'Algebra I - 8th Grade - 3 (D)'}",
+      "created_at": "today",
+      "updated_at": "today"
+    }
+  ]
+}
