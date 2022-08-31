@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import TagAndId from './TagAndId';
+import dummy from '../../assets/data/dummy.json';
+import { Link } from 'react-router-dom';
 
 const QuestionRow = styled.div`
   border-top: 1px solid rgb(227, 230, 232);
@@ -44,22 +46,24 @@ const QuestionTitleAear = styled.div`
 
 const QuestionList = () => {
   return (
-    <QuestionRow>
-      <StateColumn>
-        <QuestionStat>0 votes</QuestionStat>
-        <QuestionStat>1 answers</QuestionStat>
-        <QuestionStat>1 views</QuestionStat>
-      </StateColumn>
-      <QuestionTitleAear>
-        <h2>
-          <a href="#">
-            In Victory charts, the custom tooltip has performance issues. How to
-            resolve?
-          </a>
-        </h2>
-        <TagAndId />
-      </QuestionTitleAear>
-    </QuestionRow>
+    <>
+      {dummy.question.map((question) => (
+        <QuestionRow key={question.id}>
+          <StateColumn>
+            <QuestionStat>0 votes</QuestionStat>
+            <QuestionStat>1 answers</QuestionStat>
+            <QuestionStat>1 views</QuestionStat>
+          </StateColumn>
+          <QuestionTitleAear>
+            <Link to={`/questions/${question.id}`}>
+              <h2>{question.title}</h2>
+            </Link>
+
+            <TagAndId memberid={question.member_id} />
+          </QuestionTitleAear>
+        </QuestionRow>
+      ))}
+    </>
   );
 };
 
