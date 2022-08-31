@@ -84,7 +84,7 @@ public class SecurityConfig {
         public void configure(HttpSecurity builder) throws Exception {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
             builder
-//                    .addFilter(corsFilter)
+                   .addFilter(corsFilter)
                     .addFilter(new JwtAuthenticationFilter(authenticationManager))
                     .addFilter(new JwtAuthorizationFilter(authenticationManager, memberRepository));
         }
