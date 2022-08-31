@@ -5,7 +5,8 @@ import RobotPicSrc from '../assets/images/robot_question.png';
 import LearnStepsSrc from '../assets/images/steps_question.png';
 
 const Body = styled.div`
-  background-color: #d5d6dd;
+  padding-top: 50px;
+  background-color: #f1f2f3;
 `;
 const Question_container = styled.div`
   box-sizing: border-box;
@@ -45,6 +46,12 @@ const LearnStepsPic = styled.img`
   display: inline-block;
 `;
 
+const PostBtn = styled.button`
+  font-size: 0.78rem;
+  padding: 12px 10px;
+  margin-top: 2rem;
+`;
+
 const QuestionList = () => {
   return (
     <Body>
@@ -57,6 +64,7 @@ const QuestionList = () => {
           <PublicQuestion />
           <LearnStepsPic src={LearnStepsSrc} />
         </QuestionMain>
+        <PostBtn>Post your question</PostBtn>
       </Question_container>
     </Body>
   );
