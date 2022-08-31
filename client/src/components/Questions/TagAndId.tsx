@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import dummy from '../../assets/data/dummy.json';
 
 const TagAndId_wrapper = styled.div`
   display: flex;
@@ -25,25 +26,27 @@ const Tag = styled.div`
 
 const Id = styled.div``;
 
-const TagAndId = () => {
+const TagAndId: React.FC<{ memberid: string }> = (props) => {
   return (
-    <TagAndId_wrapper>
-      <div>
-        <Tag>
-          <a href="#">tag</a>
-        </Tag>
-        <Tag>
-          <a href="#">tag</a>
-        </Tag>
-        <Tag>
-          <a href="#">tag</a>
-        </Tag>
-      </div>
+    <>
+      <TagAndId_wrapper>
+        <div>
+          <Tag>
+            <a href="#">tag</a>
+          </Tag>
+          <Tag>
+            <a href="#">tag</a>
+          </Tag>
+          <Tag>
+            <a href="#">tag</a>
+          </Tag>
+        </div>
 
-      <Id>
-        <span>murtaza salim 101 asked 8 secs ago</span>
-      </Id>
-    </TagAndId_wrapper>
+        <Id>
+          <span>{props.memberid}</span>
+        </Id>
+      </TagAndId_wrapper>
+    </>
   );
 };
 
