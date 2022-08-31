@@ -56,9 +56,7 @@ const Header = () => {
       <HeaderWrap>
         <Wrapper>
           <Link to="/">
-            <a href="#">
-              <Logo src={HeaderLogoSrc} />
-            </a>
+            <Logo src={HeaderLogoSrc} />
           </Link>
           <form action="" className="search">
             <SearchInput type="text" placeholder="Search..." />
