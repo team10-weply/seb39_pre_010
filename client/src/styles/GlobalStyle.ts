@@ -19,6 +19,18 @@ input{
         box-shadow: 0 0 0px 4px #d6edfc;
     }
 }
+button{
+    background-color: hsl(206,100%,52%);
+    box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: white;
+   :hover{
+    cursor: pointer;
+    background-color: #0074CC;
+   }
+}
+
 `;
 
 export default GlobalStyle;
