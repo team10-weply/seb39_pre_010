@@ -5,26 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-
-public class QuestionPostDto {
-
-    private Long id;
-
-    @NotBlank(message = "제목은 공백이 불가능 합니다.")
+@AllArgsConstructor
+public class QuestionResponseDto {
+    private long id;
     private String title;
-
-    @NotBlank(message = "내용은 공백이 불가능 합니다.")
     private String content;
-
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    private Member member;
-
+    private long memberId;
 }

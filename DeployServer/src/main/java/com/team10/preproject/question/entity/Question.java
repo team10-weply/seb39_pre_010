@@ -1,11 +1,9 @@
 package com.team10.preproject.question.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.team10.preproject.member.entity.Member;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -41,8 +39,4 @@ public class Question {
     @ManyToOne()
     @JoinColumn(name = "member_id")
     private Member member;
-
-//    public void addMember(Member member){
-//        this.member = member;
-//    }
 }

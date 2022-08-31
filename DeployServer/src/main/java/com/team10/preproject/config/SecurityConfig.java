@@ -44,6 +44,10 @@ public class SecurityConfig {
         http.csrf().disable();
         http.cors();
         http.headers().frameOptions().disable();
+        http
+                .authorizeRequests()
+                .antMatchers("/questions")
+                .permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()

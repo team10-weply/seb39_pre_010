@@ -3,6 +3,7 @@ package com.team10.preproject.member.dto;
 import com.team10.preproject.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Pattern;
 
 public class MemberDto {
     @Getter
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class  Post {
         @NotBlank
