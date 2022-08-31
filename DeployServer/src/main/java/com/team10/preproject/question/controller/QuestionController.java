@@ -1,11 +1,14 @@
 package com.team10.preproject.question.controller;
 
-import com.team10.preproject.question.entity.Member;
+
+import com.team10.preproject.member.entity.Member;
+import com.team10.preproject.oauth.PrincipalDetails;
 import com.team10.preproject.question.entity.Question;
 import com.team10.preproject.question.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +37,9 @@ public class QuestionController {
 //    }
 
     @PostMapping
-    public ResponseEntity questionWrite(@RequestBody Question question, Member member){
-        questionService.questionwrite(question, member);
+    public ResponseEntity questionWrite(@RequestBody Question question,
+                                        @AuthenticationPrincipal PrincipalDetails principal){
+        questionService.questionwrite(question, principal.getMember());
         return new ResponseEntity<>(question, HttpStatus.OK);
     }
 

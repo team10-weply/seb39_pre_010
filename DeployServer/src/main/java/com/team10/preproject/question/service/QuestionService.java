@@ -1,8 +1,9 @@
 package com.team10.preproject.question.service;
 
-import com.team10.preproject.question.entity.Member;
+
+import com.team10.preproject.member.entity.Member;
 import com.team10.preproject.question.entity.Question;
-import com.team10.preproject.question.repository.MemberRepository;
+
 import com.team10.preproject.question.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

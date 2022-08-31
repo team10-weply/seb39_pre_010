@@ -1,6 +1,7 @@
 package com.team10.preproject.question.entity;
 
 
+import com.team10.preproject.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
