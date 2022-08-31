@@ -21,9 +21,20 @@ const QuestionLists = styled.div`
   width: 100%;
   overflow-y: scroll;
   display: flex;
+  justify-content: space-between;
   h1 {
     font-size: 1.7rem;
   }
+`;
+
+const InnerWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const Inner = styled.div`
+  padding: 0px 16px;
 `;
 
 const TopQuestions = styled.div`
@@ -33,11 +44,9 @@ const TopQuestions = styled.div`
 
 const Bluebutton = styled.button`
   font-size: 0.78rem;
-  background-color: rgb(10, 149, 255);
-  color: white;
-  border: 0;
-  border-radius: 3px;
   padding: 12px 10px;
+  height: 38px;
+  width: 99px;
 `;
 
 const SortingQuestions = styled.div`
@@ -51,11 +60,11 @@ const SortingQuestions = styled.div`
     color: black;
     padding: 12px 10px;
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid rgb(159, 166, 173);
     border-left: none;
     :first-child {
       border-radius: 3px 0 0 3px;
-      border-left: solid 1px;
+      border-left: solid 1px rgb(159, 166, 173);
     }
     :last-child {
       border-radius: 0 3px 3px 0;
@@ -64,15 +73,6 @@ const SortingQuestions = styled.div`
   a:hover {
     background-color: #f4f1f1;
   }
-`;
-
-const InnerWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Inner = styled.div`
-  padding: 0px 16px;
 `;
 
 const Main = () => {
@@ -84,7 +84,7 @@ const Main = () => {
           <Inner>
             <TopQuestions>
               <h1>Top Questions</h1>
-              <Link to="/askquestion">
+              <Link to="/questions">
                 <Bluebutton>Ask Question</Bluebutton>
               </Link>
             </TopQuestions>
@@ -102,9 +102,8 @@ const Main = () => {
             </SortingQuestions>
           </Inner>
           <QuestionList />
-          <QuestionList />
-          <QuestionList />
         </InnerWrapper>
+
         <RightSide />
       </QuestionLists>
     </Main_container>
