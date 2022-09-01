@@ -13,13 +13,11 @@ const Main_container = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  height: 100vh;
 `;
 
 const QuestionLists = styled.div`
   padding: 24px 0px;
   width: 100%;
-  overflow-y: scroll;
   display: flex;
   justify-content: space-between;
   h1 {
