@@ -15,7 +15,7 @@ interface ISocialLoginButtonOptions {
     bgColor: Props['bgColor'];
     color: Props['color'];
     logoImg: string;
-    fill?: string;
+    // fill?: string;
   };
 }
 
