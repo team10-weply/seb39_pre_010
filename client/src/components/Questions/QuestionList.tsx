@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import TagAndId from './TagAndId';
+import dummy from '../../assets/data/dummy.json';
+import { Link } from 'react-router-dom';
 
 const QuestionRow = styled.div`
-  border-top: 1px solid gray;
+  border-top: 1px solid rgb(227, 230, 232);
   padding: 10px 15px;
-  background-color: aquamarine;
   display: flex;
   height: 106px;
   flex: none;
@@ -17,7 +18,6 @@ const StateColumn = styled.div`
   align-items: flex-end;
   justify-content: center;
   width: 110px;
-  background-color: blue;
   margin-right: 15px;
 `;
 
@@ -25,16 +25,14 @@ const QuestionStat = styled.div`
   text-align: center;
   font-size: 0.85rem;
   display: inline-block;
-  background-color: antiquewhite;
   height: 25px;
   line-height: 25px;
 `;
 const QuestionTitleAear = styled.div`
   width: 100%;
-  background-color: brown;
-  margin-top: 18px;
+  margin-top: 0.4rem;
   h2 {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
   h2 > a {
     font-size: 1.1rem;
@@ -48,22 +46,24 @@ const QuestionTitleAear = styled.div`
 
 const QuestionList = () => {
   return (
-    <QuestionRow>
-      <StateColumn>
-        <QuestionStat>0 votes</QuestionStat>
-        <QuestionStat>1 answers</QuestionStat>
-        <QuestionStat>1 views</QuestionStat>
-      </StateColumn>
-      <QuestionTitleAear>
-        <h2>
-          <a href="#">
-            In Victory charts, the custom tooltip has performance issues. How to
-            resolve?
-          </a>
-        </h2>
-        <TagAndId />
-      </QuestionTitleAear>
-    </QuestionRow>
+    <>
+      {dummy.question.map((question) => (
+        <QuestionRow key={question.id}>
+          <StateColumn>
+            <QuestionStat>0 votes</QuestionStat>
+            <QuestionStat>1 answers</QuestionStat>
+            <QuestionStat>1 views</QuestionStat>
+          </StateColumn>
+          <QuestionTitleAear>
+            <Link to={`/questions/${question.id}`}>
+              <h2>{question.title}</h2>
+            </Link>
+
+            <TagAndId memberid={question.member_id} />
+          </QuestionTitleAear>
+        </QuestionRow>
+      ))}
+    </>
   );
 };
 

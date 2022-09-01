@@ -3,13 +3,19 @@ import styled from 'styled-components';
 import HeaderLogoSrc from '../../assets/images/header_logo.png';
 import { Link } from 'react-router-dom';
 
+const HeaderContainer = styled.header`
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+`;
+
 const Line = styled.div`
   width: 100%;
   height: 3px;
   background-color: #f48024;
 `;
 
-const Header_container = styled.header`
+const HeaderWrap = styled.div`
   width: 100%;
   height: 47px;
   background-color: hsl(210, 8%, 97.5%);
@@ -17,7 +23,6 @@ const Header_container = styled.header`
     0 2px 8px hsla(0, 0%, 0%, 0.05);
   padding: 10px;
   display: flex;
-  z-index: 99;
   form {
     width: 100%;
     margin: 0 20px;
@@ -46,21 +51,19 @@ const SearchInput = styled.input`
 
 const Header = () => {
   return (
-    <div>
+    <HeaderContainer>
       <Line />
-      <Header_container>
+      <HeaderWrap>
         <Wrapper>
           <Link to="/">
-            <a href="#">
-              <Logo src={HeaderLogoSrc} />
-            </a>
+            <Logo src={HeaderLogoSrc} />
           </Link>
           <form action="" className="search">
             <SearchInput type="text" placeholder="Search..." />
           </form>
         </Wrapper>
-      </Header_container>
-    </div>
+      </HeaderWrap>
+    </HeaderContainer>
   );
 };
 

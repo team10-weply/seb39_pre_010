@@ -3,8 +3,10 @@ import LeftSide from 'components/Sidebar/Leftsidebar';
 import RightSide from 'components/Sidebar/Rightsidebar';
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Main_container = styled.div`
+  padding-top: 50px;
   max-width: 1264px;
   width: 100%;
   background: none;
@@ -13,28 +15,38 @@ const Main_container = styled.div`
   margin: 0 auto;
   height: 100vh;
 `;
+
 const QuestionLists = styled.div`
   padding: 24px 0px;
-  background-color: aliceblue;
   width: 100%;
   overflow-y: scroll;
   display: flex;
-
+  justify-content: space-between;
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 `;
+
+const InnerWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const Inner = styled.div`
+  padding: 0px 16px;
+`;
+
 const TopQuestions = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: yellow;
 `;
+
 const Bluebutton = styled.button`
-  background-color: #4197d9;
-  color: white;
-  border: 0;
-  border-radius: 3px;
+  font-size: 0.78rem;
   padding: 12px 10px;
+  height: 38px;
+  width: 99px;
 `;
 
 const SortingQuestions = styled.div`
@@ -48,11 +60,11 @@ const SortingQuestions = styled.div`
     color: black;
     padding: 12px 10px;
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid rgb(159, 166, 173);
     border-left: none;
     :first-child {
       border-radius: 3px 0 0 3px;
-      border-left: solid 1px;
+      border-left: solid 1px rgb(159, 166, 173);
     }
     :last-child {
       border-radius: 0 3px 3px 0;
@@ -61,15 +73,6 @@ const SortingQuestions = styled.div`
   a:hover {
     background-color: #f4f1f1;
   }
-`;
-const InnerWrapper = styled.div`
-  background-color: blanchedalmond;
-  display: flex;
-  flex-direction: column;
-`;
-const Inner = styled.div`
-  padding: 0px 16px;
-  background-color: khaki;
 `;
 
 const Main = () => {
@@ -81,7 +84,9 @@ const Main = () => {
           <Inner>
             <TopQuestions>
               <h1>Top Questions</h1>
-              <Bluebutton>Ask Question</Bluebutton>
+              <Link to="/questions">
+                <Bluebutton>Ask Question</Bluebutton>
+              </Link>
             </TopQuestions>
 
             <SortingQuestions>
@@ -97,9 +102,8 @@ const Main = () => {
             </SortingQuestions>
           </Inner>
           <QuestionList />
-          <QuestionList />
-          <QuestionList />
         </InnerWrapper>
+
         <RightSide />
       </QuestionLists>
     </Main_container>

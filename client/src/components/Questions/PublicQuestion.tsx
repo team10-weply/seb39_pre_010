@@ -11,11 +11,17 @@ const QuestionContainer = styled.div`
   height: 585px;
   padding: 16px;
   line-height: 1.2rem;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.06), 0 2px 6px hsla(0, 0%, 0%, 0.06),
+    0 3px 8px hsla(0, 0%, 0%, 0.09);
   input {
     box-sizing: border-box;
     width: 100%;
     height: 28px;
     border-radius: 3px;
+  }
+  h2 {
+    margin-bottom: 0.2rem;
+    font-weight: 510;
   }
   p {
     font-size: 0.73rem;
@@ -81,11 +87,7 @@ const PublicQuestion = () => {
         </p>
         <WritingToolPic src={WritingToolSrc} />
         <form>
-          <textarea
-            cols={92}
-            rows={15}
-            placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-          ></textarea>
+          <textarea cols={92} rows={15}></textarea>
         </form>
         <MarkdownPic src={MarkdownSrc} />
       </Body>
