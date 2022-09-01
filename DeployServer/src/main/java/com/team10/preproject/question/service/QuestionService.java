@@ -4,7 +4,6 @@ package com.team10.preproject.question.service;
 import com.team10.preproject.exception.BusinessLogicException;
 import com.team10.preproject.exception.ExceptionCode;
 import com.team10.preproject.member.entity.Member;
-import com.team10.preproject.question.dto.QuestionDto;
 import com.team10.preproject.question.entity.Question;
 
 import com.team10.preproject.question.repository.QuestionRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import javax.validation.Valid;
 import java.util.Optional;
 
 @Service
