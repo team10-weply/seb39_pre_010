@@ -2,14 +2,37 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo.svg';
 import SocialLoginButton from 'components/SocialLoginButton/SocialLoginButton';
+import client from 'api';
+import { Link } from 'react-router-dom';
 
 interface ILoginInfo {
-  email: string;
+  username: string;
   password: string;
 }
 
 const Login = () => {
-  const [loginInfo, setLoginInfo] = useState<ILoginInfo | null>(null);
+  const [loginInfo, setLoginInfo] = useState<ILoginInfo>({
+    username: '',
+    password: '',
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginInfo({
+      ...loginInfo,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const response = await client
+      .post('/login', loginInfo)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+
+    return response;
+  };
 
   return (
     <Container>
@@ -29,17 +52,27 @@ const Login = () => {
           </SocialLoginButton>
         </SocialLoginContainer>
         <LoginFormContainer>
-          <LoginFormInnerContainer>
+          <LoginFormInnerContainer onSubmit={handleSubmit}>
             <LoginContent>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" />
+              <input
+                type="email"
+                id="email"
+                name="username"
+                onChange={handleChange}
+              />
             </LoginContent>
             <LoginContent>
               <div>
                 <label htmlFor="password">Password</label>
                 <a>Forgot password?</a>
               </div>
-              <input type="password" id="password" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                onChange={handleChange}
+              />
             </LoginContent>
             <LoginContent>
               <button>Log in</button>
@@ -48,10 +81,10 @@ const Login = () => {
         </LoginFormContainer>
         <SignupContainer>
           <div>
-            Don’t have an account? <a>Sign up</a>
+            Don’t have an account? <Link to="/signup">Sign up</Link>
           </div>
           <div>
-            Are you an employer? <a>Sign up on Talent</a>
+            Are you an employer? <Link to="/">Sign up on Talent</Link>
           </div>
         </SignupContainer>
       </LoginContainer>
@@ -109,7 +142,7 @@ const LoginFormContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-const LoginFormInnerContainer = styled.div`
+const LoginFormInnerContainer = styled.form`
   /* border: 1px solid gray; */
   width: 100%;
   height: 100%;
