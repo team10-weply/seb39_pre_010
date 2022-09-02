@@ -32,6 +32,14 @@ public class MemberController {
         return "user";
     }
 
+    @GetMapping("/{member-id}")
+    public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
+
+        Member member = memberService.findMember(memberId);
+        MemberDto.Response response = mapper.memberToMemberResponse(member);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
         Member member = mapper.memberPostToMember(requestBody);
