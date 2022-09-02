@@ -1,9 +1,9 @@
 import QuestionList from 'components/Questions/QuestionList';
 import LeftSide from 'components/Sidebar/Leftsidebar';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import BlueBtn from 'styles/BlueBtn';
+import BasicBtn from 'components/Button/BasicBtn';
 
 const Main_container = styled.div`
   padding-top: 50px;
@@ -75,8 +75,9 @@ const Main = () => {
           <Inner>
             <TopQuestions>
               <h1>Top Questions</h1>
+
               <Link to="/questions">
-                <BlueBtn>Ask Question</BlueBtn>
+                <BasicBtn>Ask Question</BasicBtn>
               </Link>
             </TopQuestions>
 
