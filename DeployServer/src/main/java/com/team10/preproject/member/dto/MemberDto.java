@@ -1,6 +1,6 @@
 package com.team10.preproject.member.dto;
 
-import com.team10.preproject.member.entity.Member;
+import com.team10.preproject.validator.NotSpace;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
@@ -18,7 +18,7 @@ public class MemberDto {
         private String email;
 
         @NotBlank(message = "Name cannot be null")
-        @Length(min=2, max = 20)
+        @Length(max = 20)
         private String nickname;
 
         @NotBlank(message = "Password cannot be null")
@@ -31,10 +31,11 @@ public class MemberDto {
     public static class Patch {
         private long memberId;
 
-        @NotBlank(message = "Name cannot be null")
+        @NotSpace(message = "Nickname cannot be null")
+        @Length(max = 20)
         private String nickname;
 
-        @NotBlank(message = "Password cannot be null")
+        @NotSpace(message = "Password cannot be null")
         @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$",
                 message = "password must be 8-20 characters long and contain one uppercase and one lowercase and one special character.")
         private String password;

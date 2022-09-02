@@ -8,8 +8,6 @@ import com.team10.preproject.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/user")
 @Validated
 @Slf4j
 public class MemberController {
@@ -29,7 +27,10 @@ public class MemberController {
         this.mapper = mapper;
     }
 
-
+    @GetMapping("/")
+    public String user() {
+        return "user";
+    }
 
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
@@ -64,5 +65,4 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

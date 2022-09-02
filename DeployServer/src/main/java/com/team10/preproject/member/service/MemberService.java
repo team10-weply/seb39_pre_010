@@ -10,9 +10,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -38,6 +35,7 @@ public class MemberService {
         this.publisher = publisher;
     }
 
+
     public Member createMember(Member member) {
         verifyExistsEmail(member.getEmail());
         member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
@@ -53,10 +51,10 @@ public class MemberService {
     public Member updateMember(Member member) {
         Member findMember = findVerifiedMember(member.getMemberId());
 
-        Optional.ofNullable(member.getUsername())
-                .ifPresent(nickname -> findMember.setNickname(nickname));
+        Optional.ofNullable(member.getNickname())
+                .ifPresent(findMember::setNickname);
         Optional.ofNullable(member.getPassword())
-                .ifPresent(password -> findMember.setPassword(password));
+                .ifPresent(findMember::setPassword);
 //        Optional.ofNullable(member.getMemberStatus())
 //                .ifPresent(memberStatus -> findMember.setMemberStatus(memberStatus));
 
