@@ -46,7 +46,7 @@ public class SecurityConfig {
         http.headers().frameOptions().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/questions")
+                .antMatchers("/questions/**")
                 .permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

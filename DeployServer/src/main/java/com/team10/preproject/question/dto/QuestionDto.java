@@ -4,7 +4,6 @@ import com.team10.preproject.member.entity.Member;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 
@@ -14,7 +13,7 @@ public class QuestionDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Post {
-        private Long id;
+        private Long questionId;
 
         @NotBlank(message = "제목은 공백이 불가능 합니다.")
         private String title;
@@ -32,7 +31,7 @@ public class QuestionDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Put {
-        private Long id;
+        private Long questionId;
 
         @NotBlank(message = "제목은 공백이 불가능 합니다.")
         private String title;
@@ -42,11 +41,12 @@ public class QuestionDto {
     }
 
     @Data
+    @NoArgsConstructor
     @AllArgsConstructor
-    public static class Response {
-        private Long id;
+    public static class Response{
+        private Long questionId;
         private String title;
         private String content;
-        public Member member;
+        public Long memberId;
     }
 }

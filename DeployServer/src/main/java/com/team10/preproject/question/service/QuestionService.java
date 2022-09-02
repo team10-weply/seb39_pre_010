@@ -40,9 +40,9 @@ public class QuestionService {
 
     // 특정 질문 불러오기
     @Transactional(readOnly = true)
-    public Question questionView(Long id){
+    public Question questionView(Long questionId){
         Optional<Question> optionalQuestion =
-                questionRepository.findById(id);
+                questionRepository.findById(questionId);
         Question question =
                 optionalQuestion.orElseThrow(() -> {
                     return new BusinessLogicException(ExceptionCode.NoSuchElementException);
@@ -51,8 +51,8 @@ public class QuestionService {
     }
 
     @Transactional
-    public Question questionUpdate(long id,Question requestQuestion){
-        Question question = questionRepository.findById(id)
+    public Question questionUpdate(long questionId,Question requestQuestion){
+        Question question = questionRepository.findById(questionId)
                 .orElseThrow(() ->{
                     return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
                 });
@@ -63,9 +63,9 @@ public class QuestionService {
 
     // 특정 질문 삭제하기
     @Transactional
-    public void questionDelete(Long id){
+    public void questionDelete(Long questionId){
 
-        questionRepository.deleteById(id);
+        questionRepository.deleteById(questionId);
     }
 
 }

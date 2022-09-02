@@ -3,6 +3,7 @@ package com.team10.preproject.question.controller;
 import com.team10.preproject.dto.SingleResponseDto;
 import com.team10.preproject.oauth.PrincipalDetails;
 import com.team10.preproject.question.dto.QuestionDto;
+import com.team10.preproject.question.dto.QuestionResponseDto;
 import com.team10.preproject.question.entity.Question;
 import com.team10.preproject.question.mapper.QuestionMapper;
 import com.team10.preproject.question.service.QuestionService;
@@ -17,7 +18,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Positive;
 
 
 @RestController
@@ -36,14 +36,15 @@ public class QuestionController {
 
         Question question = mapper.questionPostToQuestion(requestBody);
         Question createQuestion = questionService.questionwrite(question, principal.getMember());
-        QuestionDto.Response response = mapper.questionToQuestionResponse(createQuestion);
+        QuestionResponseDto questionResponseDto = mapper.questionToQuestionResponse(createQuestion);
 
+        questionResponseDto.setMemberId(principal.getMember().getMemberId());
         return new ResponseEntity<>(
-                new SingleResponseDto<>(response), HttpStatus.CREATED);
+                new SingleResponseDto<>(questionResponseDto), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity questionList(@PageableDefault(size=5, sort="id", direction = Sort.Direction.DESC)
+    public ResponseEntity questionList(@PageableDefault(size=5, sort="questionId", direction = Sort.Direction.DESC)
                     Pageable pageable){
 
         Page<Question> questions = questionService.questionList(pageable);
@@ -51,25 +52,25 @@ public class QuestionController {
     }
 
     @GetMapping("/{question-id}")
-    public ResponseEntity questionView(@PathVariable("question-id") Long id){
+    public ResponseEntity questionView(@PathVariable("question-id") Long questionId){
 
-        Question question = questionService.questionView(id);
+        Question question = questionService.questionView(questionId);
 
         return new ResponseEntity<>(question, HttpStatus.OK);
     }
 
     @DeleteMapping("/{question-id}")
-    public ResponseEntity questionDelete(@PathVariable("question-id") Long id){
+    public ResponseEntity questionDelete(@PathVariable("question-id") Long questionId){
 
-        questionService.questionDelete(id);
+        questionService.questionDelete(questionId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
     @PutMapping("/{question-id}")
-    public ResponseEntity questionUpdate(@PathVariable("question-id") Long id,
-                                         @RequestBody QuestionDto.Put requestBody){
-        questionService.questionUpdate(id, mapper.questionPutToQuesiton(requestBody));
+    public ResponseEntity questionUpdate(@PathVariable("question-id") Long questionId,
+                                         @Valid @RequestBody QuestionDto.Put requestBody){
+        questionService.questionUpdate(questionId, mapper.questionPutToQuesiton(requestBody));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
