@@ -24,6 +24,8 @@ public class WebConfig implements WebMvcConfigurer {
 //                         "https://localhost:3000",
 //                         "https://127.0.0.1:3000"
 //                 )
+                .exposedHeaders("authorization")
+                .allowedOriginPatterns("*")
                 .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
 
     }
