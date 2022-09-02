@@ -24,7 +24,6 @@ const VoteandQuestion = styled.div`
   display: flex;
 `;
 const YourQuestion = styled.div``;
-const Tags = styled.div``;
 const AddComments = styled.div`
   margin-top: 3rem;
   a {
@@ -62,11 +61,6 @@ const YourAnswer = styled.div`
   }
 `;
 
-const WritingToolPic = styled.img`
-  display: inline-block;
-  width: 100.3%;
-`;
-
 const QeustionandAnswer = () => {
   return (
     <QeustionandAnswerContainer>
@@ -102,7 +96,6 @@ const QeustionandAnswer = () => {
             <a href="#">Twitter</a>, or <a href="#">Facebook</a>.
           </p>
           <h2>Your Answer</h2>
-          <WritingToolPic src={WritingToolSrc} />
           <form>
             <textarea cols={92} rows={15}></textarea>
           </form>

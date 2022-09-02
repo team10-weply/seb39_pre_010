@@ -1,14 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import WritingToolSrc from '../../assets/images/writingtoolbox_question.png';
-import MarkdownSrc from '../../assets/images/markdown_question.png';
 
 const QuestionContainer = styled.div`
   box-sizing: border-box;
   background-color: white;
   border-radius: 3px;
-  width: 873px;
-  height: 585px;
   padding: 16px;
   line-height: 1.2rem;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.06), 0 2px 6px hsla(0, 0%, 0%, 0.06),
@@ -28,13 +24,10 @@ const QuestionContainer = styled.div`
   }
 `;
 const Title = styled.div`
-  width: 839px;
   height: 76px;
   margin-bottom: 16px;
 `;
 const Body = styled.div`
-  width: 839px;
-  height: 365px;
   margin-bottom: 16px;
   textarea {
     box-sizing: border-box;
@@ -51,16 +44,6 @@ const Body = styled.div`
       box-shadow: 0 0 0px 4px #d6edfc;
     }
   }
-`;
-
-const WritingToolPic = styled.img`
-  width: 100.2%;
-  display: inline-block;
-`;
-
-const MarkdownPic = styled.img`
-  width: 100.2%;
-  display: inline-block;
 `;
 
 const Tags = styled.div``;
@@ -85,11 +68,9 @@ const PublicQuestion = () => {
         <p>
           Include all the information someone would need to answer your question
         </p>
-        <WritingToolPic src={WritingToolSrc} />
         <form>
           <textarea cols={92} rows={15}></textarea>
         </form>
-        <MarkdownPic src={MarkdownSrc} />
       </Body>
       <Tags>
         <h2>Tags</h2>

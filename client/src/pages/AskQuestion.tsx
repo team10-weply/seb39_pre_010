@@ -35,16 +35,7 @@ const BackgroundPic = styled.img`
   display: inline-block;
 `;
 
-const QuestionMain = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const LearnStepsPic = styled.img`
-  width: 316px;
-  height: 100%;
-  display: inline-block;
-`;
+const QuestionMain = styled.div``;
 
 const PostBtn = styled.button`
   font-size: 0.78rem;
@@ -62,7 +53,6 @@ const QuestionList = () => {
         </AskQTitle>
         <QuestionMain>
           <PublicQuestion />
-          <LearnStepsPic src={LearnStepsSrc} />
         </QuestionMain>
         <PostBtn>Post your question</PostBtn>
       </Question_container>
