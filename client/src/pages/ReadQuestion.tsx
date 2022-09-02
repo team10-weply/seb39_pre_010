@@ -1,9 +1,11 @@
 import LeftSide from 'components/Sidebar/Leftsidebar';
 import RightSideSrc from '../assets/images/rightbar_questionandanswer.png';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import QeustionandAnswer from 'components/Questions/QuestionandAnswer';
+import BasicBtn from 'components/Button/BasicBtn';
+import axios from 'axios';
 
 const Main_container = styled.div`
   padding-top: 50px;
@@ -41,7 +43,6 @@ const Title = styled.div`
 
 const TopQuestions = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
 
 const Content = styled.div`
@@ -54,13 +55,6 @@ const RightSidePic = styled.img`
   height: 506px;
   margin-left: 24px;
   margin-top: 1rem;
-`;
-
-const Bluebutton = styled.button`
-  font-size: 0.78rem;
-  padding: 10px 10px;
-  height: 38px;
-  width: 99px;
 `;
 
 const AskedandModified = styled.div`
@@ -78,6 +72,32 @@ const AskedandModified = styled.div`
 `;
 
 const ReadQuestion = () => {
+  interface IListsInfo {
+    questionId: number;
+    title: string;
+    member: IMember;
+  }
+  interface IMember {
+    memberId: number;
+    nickname: string;
+    email: string;
+    createdAt: number;
+  }
+  const [loading, setLoading] = useState(true);
+  const [listsinfo, setListsinfo] = useState<IListsInfo[]>([]);
+  const { questionId } = useParams();
+  const getQuestionandAnswer = async () => {
+    const response = await axios
+      .get(`http://e7a2-118-32-35-58.ngrok.io/questions/13`)
+      .then((res: any) => console.log(res))
+      .catch((err: any) => console.log(err));
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getQuestionandAnswer();
+  }, []);
+
   return (
     <Main_container>
       <LeftSide />
@@ -90,7 +110,7 @@ const ReadQuestion = () => {
                 properties contributed by a Gradle plugin?
               </h1>
               <Link to="/questions">
-                <Bluebutton>Ask Question</Bluebutton>
+                <BasicBtn>Ask Question</BasicBtn>
               </Link>
             </TopQuestions>
             <AskedandModified>
@@ -107,7 +127,6 @@ const ReadQuestion = () => {
           </Title>
           <Content>
             <QeustionandAnswer />
-            <RightSidePic src={RightSideSrc} />
           </Content>
         </InnerWrapper>
       </QuestionLists>
