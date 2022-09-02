@@ -6,11 +6,16 @@ import com.team10.preproject.member.entity.Member;
 import com.team10.preproject.member.mapper.MemberMapper;
 import com.team10.preproject.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
@@ -38,6 +43,17 @@ public class MemberController {
         Member member = memberService.findMember(memberId);
         MemberDto.Response response = mapper.memberToMemberResponse(member);
         return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+
+    private void removeCookies(HttpServletRequest request, HttpServletResponse response) {
+
+        Cookie rememberMeCookie = new Cookie("remember-me", "");
+
+        rememberMeCookie.setMaxAge(0);
+
+        response.addCookie(rememberMeCookie);
     }
 
     @PostMapping("/signup")
