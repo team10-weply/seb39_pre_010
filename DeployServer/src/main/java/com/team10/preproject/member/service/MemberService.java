@@ -16,6 +16,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Transactional
@@ -33,6 +36,12 @@ public class MemberService {
                          ApplicationEventPublisher publisher) {
         this.memberRepository = memberRepository;
         this.publisher = publisher;
+    }
+
+    public void removeCookies(HttpServletRequest request, HttpServletResponse response) {
+        Cookie rememberMeCookie = new Cookie("remember-me", "");
+        rememberMeCookie.setMaxAge(0);
+        response.addCookie(rememberMeCookie);
     }
 
 

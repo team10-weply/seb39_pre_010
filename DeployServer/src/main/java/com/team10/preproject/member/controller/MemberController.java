@@ -45,15 +45,12 @@ public class MemberController {
         return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    @GetMapping("/logout")
+    public ResponseEntity logoutMember(
+            HttpServletRequest request, HttpServletResponse response) {
+        memberService.removeCookies(request, response);
 
-    private void removeCookies(HttpServletRequest request, HttpServletResponse response) {
-
-        Cookie rememberMeCookie = new Cookie("remember-me", "");
-
-        rememberMeCookie.setMaxAge(0);
-
-        response.addCookie(rememberMeCookie);
+        return new ResponseEntity<>(HttpStatus.FOUND);
     }
 
     @PostMapping("/signup")
