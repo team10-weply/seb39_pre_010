@@ -19,8 +19,6 @@ public class RestApiController {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
-    // 추가
     @GetMapping("/api/v1/admin")
     public String admin() {
         return "admin";
