@@ -82,6 +82,6 @@ public class MemberController {
             @PathVariable("member-id") @Positive long memberId) {
         memberService.deleteMember(memberId);
 
-        return new ResponseEntity<>("Your information has been deleted!", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

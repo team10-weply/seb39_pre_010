@@ -53,9 +53,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         Long memberId = principalDetails.getMember().getMemberId();
         String username = principalDetails.getMember().getUsername();
+        String nickname = principalDetails.getMember().getNickname();
 
-        String json = objectMapper.writeValueAsString(principalDetails.getMember());
-
+        String json =
+                "{\"memberId\":" + memberId + ",\n\"email\":\"" + username + "\",\n\"nickname\":\"" + nickname + "\"}";
+                objectMapper.writeValueAsString(principalDetails.getMember());
 
 
         String jwtToken = JWT.create()
