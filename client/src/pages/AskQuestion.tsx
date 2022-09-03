@@ -2,7 +2,6 @@ import PublicQuestion from 'components/Questions/PublicQuestion';
 import React from 'react';
 import styled from 'styled-components';
 import RobotPicSrc from '../assets/images/robot_question.png';
-import LearnStepsSrc from '../assets/images/steps_question.png';
 
 const Body = styled.div`
   padding-top: 50px;
@@ -35,7 +34,9 @@ const BackgroundPic = styled.img`
   display: inline-block;
 `;
 
-const QuestionMain = styled.div``;
+const QuestionMain = styled.div`
+  margin-bottom: 2rem;
+`;
 
 const PostBtn = styled.button`
   font-size: 0.78rem;
@@ -54,7 +55,6 @@ const QuestionList = () => {
         <QuestionMain>
           <PublicQuestion />
         </QuestionMain>
-        <PostBtn>Post your question</PostBtn>
       </Question_container>
     </Body>
   );
