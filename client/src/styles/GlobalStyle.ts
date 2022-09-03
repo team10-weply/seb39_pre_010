@@ -5,7 +5,9 @@ const GlobalStyle = createGlobalStyle`
 ${reset}
 *{
     box-sizing:border-box;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+body{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
 }
 `;
 
