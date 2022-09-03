@@ -10,8 +10,8 @@ const QeustionandAnswerContainer = styled.div`
   width: 100%;
   margin-top: 1rem;
   display: flex;
-  background-color: yellow;
 `;
+
 const VotePic = styled.img`
   margin-right: 16px;
   display: inline-block;
@@ -19,7 +19,9 @@ const VotePic = styled.img`
   height: 171.5px;
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 100%;
+`;
 const VoteandQuestion = styled.div`
   display: flex;
 `;
@@ -61,28 +63,16 @@ const YourAnswer = styled.div`
   }
 `;
 
-const QeustionandAnswer = () => {
+const QeustionandAnswer: React.FC<{ content: string | undefined }> = (
+  props
+) => {
   return (
     <QeustionandAnswerContainer>
       <Wrapper>
         <VoteandQuestion>
           <VotePic src={VoteSrc}></VotePic>
           <YourQuestion>
-            <p>
-              I&apos;m an absolute beginner. I want to build a chrome extension
-              that will interact with the login API. I need following: -- user
-              can login via input &quot;email&quot; and &quot;password&quot; or
-              might be login through my app.
-              <br />
-              -- after that a session will be saved into the local storage.
-              where I can access the details of users.
-              <br />
-              -- If user logged-out from my website, my extension will also be
-              logged-out. again login and start working on it.
-              <br />
-              -- how can I display my popup while selection of textarea text.
-              For Example I select any text my extension will display via popup.
-            </p>
+            <p>{props.content}</p>
             <AddComments>
               <a href="#">Add a comment</a>
             </AddComments>
@@ -97,7 +87,7 @@ const QeustionandAnswer = () => {
           </p>
           <h2>Your Answer</h2>
           <form>
-            <textarea cols={92} rows={15}></textarea>
+            <textarea cols={92} rows={15} />
           </form>
         </YourAnswer>
       </Wrapper>
