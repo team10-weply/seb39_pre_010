@@ -1,14 +1,15 @@
 package com.team10.preproject.controller;
 
 
-import com.team10.preproject.member.entity.Member;
 import com.team10.preproject.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,15 +19,18 @@ public class RestApiController {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
+    // 추가
+    @GetMapping("/api/v1/admin")
+    public String admin() {
+        return "admin";
+    }
+
     @GetMapping("/info")
     public String info() {
         return "<h1>info</h1>";
     }
 
-    @GetMapping("/admin")
-    public @ResponseBody String admin() {
-        return "admin";
-    }
 
     @GetMapping("/manager")
     public @ResponseBody String manager() {
@@ -37,19 +41,6 @@ public class RestApiController {
     public String token() {
         return "<h1>token</h1>";
     }
-
-    @GetMapping("/logout")
-    public @ResponseBody String logout() {
-        return "logout";
-    }
-
-//    @PostMapping("/join")
-//    public String join(@RequestBody Member member) {
-//        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
-//        member.setRoles("ROLE_USER");
-//        memberRepository.save(member);
-//        return "회원 가입 완료";
-//    }
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/admintools")
@@ -62,5 +53,6 @@ public class RestApiController {
     public @ResponseBody String data() {
         return "data";
     }
+
 
 }

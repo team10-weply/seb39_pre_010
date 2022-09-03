@@ -13,8 +13,8 @@ public class MemberPostDto {
     @Email
     private String email;
 
-    @NotBlank(message = "Name cannot be null")
-    @Length(min=2, max = 20)
+    @NotBlank(message = "Nickname cannot be null")
+    @Length(max = 20)
     private String nickname;
 
     @NotBlank(message = "Password cannot be null")

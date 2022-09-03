@@ -1,7 +1,6 @@
 package com.team10.preproject.member.entity;
 
 import com.team10.preproject.audit.Auditable;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

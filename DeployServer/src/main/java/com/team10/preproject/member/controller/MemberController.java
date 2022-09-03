@@ -8,16 +8,16 @@ import com.team10.preproject.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 @Validated
 @Slf4j
 public class MemberController {
@@ -29,7 +29,27 @@ public class MemberController {
         this.mapper = mapper;
     }
 
+    @GetMapping("/")
+    public String user() {
+        return "user";
+    }
 
+    @GetMapping("/{member-id}")
+    public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
+
+        Member member = memberService.findMember(memberId);
+        MemberDto.Response response = mapper.memberToMemberResponse(member);
+        return new ResponseEntity<>(new SingleResponseDto<>(response), HttpStatus.OK);
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity logoutMember(
+            HttpServletRequest request, HttpServletResponse response) {
+        memberService.removeCookies(request, response);
+
+        return ResponseEntity.ok()
+                .body("You've been signed out!");
+    }
 
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
@@ -64,5 +84,4 @@ public class MemberController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
