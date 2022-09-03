@@ -26,7 +26,7 @@ const Tag = styled.div`
 
 const Id = styled.div``;
 
-const TagAndId: React.FC<{ memberid: string }> = (props) => {
+const TagAndId: React.FC<{ memberid: number; createdAt: number }> = (props) => {
   return (
     <>
       <TagAndId_wrapper>
@@ -43,7 +43,11 @@ const TagAndId: React.FC<{ memberid: string }> = (props) => {
         </div>
 
         <Id>
-          <span>{props.memberid}</span>
+          <span>
+            userID : {props.memberid}
+            <br />
+            작성시간 : {props.createdAt}
+          </span>
         </Id>
       </TagAndId_wrapper>
     </>
