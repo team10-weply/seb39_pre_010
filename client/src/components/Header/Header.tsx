@@ -42,6 +42,12 @@ const SearchInput = styled.input`
   width: 100%;
   height: 30px;
   border-radius: 3px;
+  border: 1px solid rgb(186, 191, 196);
+  :focus {
+    outline: none !important;
+    border-color: #94caf3;
+    box-shadow: 0 0 0px 4px #d6edfc;
+  }
 `;
 
 const Logo = styled.img`
