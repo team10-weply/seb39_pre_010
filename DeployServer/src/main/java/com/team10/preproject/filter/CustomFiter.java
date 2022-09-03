@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FirstFilter implements Filter {
+public class CustomFiter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -19,7 +19,7 @@ public class FirstFilter implements Filter {
         if(req.getMethod().equals("POST")) {
             String headerAuth = req.getHeader("Authorization");
 
-            if(headerAuth.equals("codestates")) {
+            if(headerAuth.equals("customAuth")) {
                 chain.doFilter(req, res);
             } else {
                 PrintWriter writer = res.getWriter();
