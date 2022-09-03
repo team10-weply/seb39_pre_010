@@ -1,5 +1,6 @@
 package com.team10.preproject.question.controller;
 
+
 import com.team10.preproject.dto.SingleResponseDto;
 import com.team10.preproject.oauth.PrincipalDetails;
 import com.team10.preproject.question.dto.QuestionDto;
@@ -39,6 +40,8 @@ public class QuestionController {
         QuestionResponseDto questionResponseDto = mapper.questionToQuestionResponse(createQuestion);
 
         questionResponseDto.setMemberId(principal.getMember().getMemberId());
+        questionResponseDto.setEmail(principal.getMember().getEmail());
+        questionResponseDto.setNickname(principal.getMember().getNickname());
         return new ResponseEntity<>(
                 new SingleResponseDto<>(questionResponseDto), HttpStatus.CREATED);
     }
@@ -48,14 +51,15 @@ public class QuestionController {
                     Pageable pageable){
 
         Page<Question> questions = questionService.questionList(pageable);
-        return new ResponseEntity<>(questions, HttpStatus.OK);
+        Page<QuestionResponseDto> pageDto = questions.map(QuestionResponseDto::new);
+
+        return new ResponseEntity<>(pageDto, HttpStatus.OK);
     }
 
     @GetMapping("/{question-id}")
     public ResponseEntity questionView(@PathVariable("question-id") Long questionId){
 
         Question question = questionService.questionView(questionId);
-
         return new ResponseEntity<>(question, HttpStatus.OK);
     }
 

@@ -13,4 +13,5 @@ public interface QuestionMapper {
     Question questionPutToQuesiton(QuestionDto.Put requestBody);
 //    QuestionDto.Response questionToQuestionResponse(Question question);
     QuestionResponseDto questionToQuestionResponse(Question question);
+//    QuestionResponseDto.AnswerResponseDto questionAndanswerToQuestionResponse(Question question);
 }
