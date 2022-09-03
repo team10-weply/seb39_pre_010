@@ -57,6 +57,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String json = objectMapper.writeValueAsString(principalDetails.getMember());
 
 
+
         String jwtToken = JWT.create()
                 .withSubject("cos jwt token")
                 .withExpiresAt(new Date(System.currentTimeMillis() + (60 * 1000 * 10)))
