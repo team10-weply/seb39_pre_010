@@ -3,15 +3,18 @@ import styled from 'styled-components';
 import Logo from 'assets/images/Logo.svg';
 import SocialLoginButton from 'components/SocialLoginButton/SocialLoginButton';
 import client from 'api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { cookie } from 'utils/cookie';
+import jwt_decode from 'jwt-decode';
 
-interface ILoginInfo {
+interface ILoginForm {
   username: string;
   password: string;
 }
 
 const Login = () => {
-  const [loginInfo, setLoginInfo] = useState<ILoginInfo>({
+  const navigate = useNavigate();
+  const [loginInfo, setLoginInfo] = useState<ILoginForm>({
     username: '',
     password: '',
   });
@@ -25,13 +28,20 @@ const Login = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    try {
+      const response = await client.post('/api/v1/users/login', loginInfo);
+      const token = response.headers.authorization.split(' ')[1];
 
-    const response = await client
-      .post('/login', loginInfo)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      cookie.setItem('accessToken', token);
+      localStorage.setItem('user', JSON.stringify(jwt_decode(token)));
+      // navigate('/');
 
-    return response;
+      console.log(response);
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -213,5 +223,6 @@ const SignupContainer = styled.div`
 
   & a {
     color: hsl(206, 100%, 40%);
+    text-decoration: none;
   }
 `;
