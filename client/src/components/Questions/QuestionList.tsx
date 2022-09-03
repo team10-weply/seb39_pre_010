@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TagAndId from './TagAndId';
 import dummy from '../../assets/data/dummy.json';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const QuestionRow = styled.div`
   border-top: 1px solid rgb(227, 230, 232);
@@ -44,25 +45,60 @@ const QuestionTitleAear = styled.div`
   }
 `;
 
+export interface IListsInfo {
+  content: string;
+  createdAt: number;
+  email: string;
+  memberId: number;
+  nickname: string;
+  questionId: number;
+  title: string;
+  updatedAt: number;
+}
 const QuestionList = () => {
+  const [loading, setLoading] = useState(true);
+  const [listsinfo, setListsinfo] = useState<IListsInfo[]>([]);
+
+  const getQuestionLists = async () => {
+    const response = await axios
+      .get('http://07d6-118-32-35-58.ngrok.io/questions')
+      .then((res: any) => setListsinfo(res.data.content))
+      .catch((err: any) => console.log(err));
+    setLoading(false);
+    console.log(listsinfo);
+  };
+
+  useEffect(() => {
+    getQuestionLists();
+  }, []);
+
   return (
     <>
-      {dummy.question.map((question) => (
-        <QuestionRow key={question.id}>
-          <StateColumn>
-            <QuestionStat>0 votes</QuestionStat>
-            <QuestionStat>1 answers</QuestionStat>
-            <QuestionStat>1 views</QuestionStat>
-          </StateColumn>
-          <QuestionTitleAear>
-            <Link to={`/questions/${question.id}`}>
-              <h2>{question.title}</h2>
-            </Link>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          {listsinfo.map((question) => (
+            <QuestionRow key={question.questionId}>
+              <StateColumn>
+                <QuestionStat>0 votes</QuestionStat>
+                <QuestionStat>1 answers</QuestionStat>
+                <QuestionStat>1 views</QuestionStat>
+              </StateColumn>
+              <QuestionTitleAear>
+                <Link to={`/questions/${question.questionId}`}>
+                  <h2>{question.title}</h2>
+                </Link>
 
-            <TagAndId memberid={question.member_id} />
-          </QuestionTitleAear>
-        </QuestionRow>
-      ))}
+                <TagAndId
+                  memberid={question.memberId}
+                  createdAt={question.createdAt}
+                />
+              </QuestionTitleAear>
+            </QuestionRow>
+          ))}
+        </div>
+      )}
     </>
   );
 };
