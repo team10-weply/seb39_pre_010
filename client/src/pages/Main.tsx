@@ -1,9 +1,9 @@
 import QuestionList from 'components/Questions/QuestionList';
 import LeftSide from 'components/Sidebar/Leftsidebar';
-import RightSide from 'components/Sidebar/Rightsidebar';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import BasicBtn from 'components/Button/BasicBtn';
 
 const Main_container = styled.div`
   padding-top: 50px;
@@ -38,13 +38,6 @@ const Inner = styled.div`
 const TopQuestions = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-const Bluebutton = styled.button`
-  font-size: 0.78rem;
-  padding: 12px 10px;
-  height: 38px;
-  width: 99px;
 `;
 
 const SortingQuestions = styled.div`
@@ -82,8 +75,9 @@ const Main = () => {
           <Inner>
             <TopQuestions>
               <h1>Top Questions</h1>
+
               <Link to="/questions">
-                <Bluebutton>Ask Question</Bluebutton>
+                <BasicBtn>Ask Question</BasicBtn>
               </Link>
             </TopQuestions>
 
@@ -101,8 +95,6 @@ const Main = () => {
           </Inner>
           <QuestionList />
         </InnerWrapper>
-
-        <RightSide />
       </QuestionLists>
     </Main_container>
   );

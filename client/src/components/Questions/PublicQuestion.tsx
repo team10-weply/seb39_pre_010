@@ -1,15 +1,19 @@
-import React from 'react';
+import axios from 'axios';
+import BasicBtn from 'components/Button/BasicBtn';
+import InputBorder from 'components/Input/InputBorder';
+import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
-import WritingToolSrc from '../../assets/images/writingtoolbox_question.png';
-import MarkdownSrc from '../../assets/images/markdown_question.png';
+import { IListsInfo } from './QuestionList';
+
+const QuestionForm = styled.form``;
 
 const QuestionContainer = styled.div`
   box-sizing: border-box;
   background-color: white;
   border-radius: 3px;
-  width: 873px;
-  height: 585px;
   padding: 16px;
+  margin-bottom: 2rem;
   line-height: 1.2rem;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.06), 0 2px 6px hsla(0, 0%, 0%, 0.06),
     0 3px 8px hsla(0, 0%, 0%, 0.09);
@@ -28,13 +32,10 @@ const QuestionContainer = styled.div`
   }
 `;
 const Title = styled.div`
-  width: 839px;
   height: 76px;
   margin-bottom: 16px;
 `;
 const Body = styled.div`
-  width: 839px;
-  height: 365px;
   margin-bottom: 16px;
   textarea {
     box-sizing: border-box;
@@ -53,55 +54,67 @@ const Body = styled.div`
   }
 `;
 
-const WritingToolPic = styled.img`
-  width: 100.2%;
-  display: inline-block;
-`;
-
-const MarkdownPic = styled.img`
-  width: 100.2%;
-  display: inline-block;
-`;
-
 const Tags = styled.div``;
 
 const PublicQuestion = () => {
+  const [posts, setPosts] = useState<IListsInfo[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const onSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!isLoading && titleRef.current && contentRef.current) {
+      setIsLoading(true);
+      const title = titleRef.current.value;
+      const content = contentRef.current.value;
+      const response = await axios
+        .post('/questions', { title: title, content: content })
+        .then((res) => {
+          setIsLoading(false);
+          setPosts([res.data, ...posts]);
+          alert('글 작성완료!');
+        })
+        .catch((err) => alert('글 작성에 실패하였습니다.'));
+    }
+  };
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const tagRef = useRef<HTMLInputElement>(null);
+
   return (
-    <QuestionContainer>
-      <Title>
-        <h2>Title</h2>
-        <p>
-          Be specific and imagine you’re asking a question to another person
-        </p>
-        <form>
-          <input
+    <QuestionForm onSubmit={onSubmit}>
+      <QuestionContainer>
+        <Title>
+          <h2>Title</h2>
+          <p>
+            Be specific and imagine you’re asking a question to another person
+          </p>
+          <InputBorder
             type="text"
             placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-          ></input>
-        </form>
-      </Title>
-      <Body>
-        <h2>Body</h2>
-        <p>
-          Include all the information someone would need to answer your question
-        </p>
-        <WritingToolPic src={WritingToolSrc} />
-        <form>
-          <textarea cols={92} rows={15}></textarea>
-        </form>
-        <MarkdownPic src={MarkdownSrc} />
-      </Body>
-      <Tags>
-        <h2>Tags</h2>
-        <p>Add up to 5 tags to describe what your question is about</p>
-        <form>
-          <input
+            ref={titleRef}
+          />
+        </Title>
+        <Body>
+          <h2>Body</h2>
+          <p>
+            Include all the information someone would need to answer your
+            question
+          </p>
+          <textarea cols={92} rows={15} ref={contentRef} />
+        </Body>
+        <Tags>
+          <h2>Tags</h2>
+          <p>Add up to 5 tags to describe what your question is about</p>
+
+          <InputBorder
             type="text"
             placeholder="e.g. (angular sql-server string)"
-          ></input>
-        </form>
-      </Tags>
-    </QuestionContainer>
+            ref={tagRef}
+          />
+        </Tags>
+      </QuestionContainer>
+      <BasicBtn>Post your question</BasicBtn>
+    </QuestionForm>
   );
 };
 
