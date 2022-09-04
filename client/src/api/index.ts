@@ -6,5 +6,5 @@ export const client = axios.create({
 });
 
 export const header: AxiosRequestHeaders = {
-  Authrization: `Bearer ${cookie.getItem('accessToken')}`,
+  Authorization: `Bearer ${cookie.getItem('accessToken')}`,
 };
