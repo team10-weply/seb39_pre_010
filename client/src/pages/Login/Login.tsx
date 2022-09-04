@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from 'assets/images/Logo.svg';
 import SocialLoginButton from 'components/SocialLoginButton/SocialLoginButton';
-import client from 'api';
+import { client } from 'api';
 import { Link, useNavigate } from 'react-router-dom';
 import { cookie } from 'utils/cookie';
 import jwt_decode from 'jwt-decode';
+import BasicButton from 'components/Button/BasicButton';
 
 interface ILoginForm {
   username: string;
@@ -85,7 +86,7 @@ const Login = () => {
               />
             </LoginContent>
             <LoginContent>
-              <button>Log in</button>
+              <BasicButton width="100%">Log in</BasicButton>
             </LoginContent>
           </LoginFormInnerContainer>
         </LoginFormContainer>
@@ -193,17 +194,6 @@ const LoginContent = styled.div`
     margin-top: 2px;
     border: 1px solid hsl(210, 8%, 75%);
     border-radius: 3px;
-  }
-
-  & button {
-    border: 1px solid rgb(214, 217, 220);
-    width: 100%;
-    margin: 0;
-    border-radius: 0.25rem;
-    height: 37.78px;
-    background-color: hsl(206, 100%, 52%);
-    color: white;
-    cursor: pointer;
   }
 `;
 
