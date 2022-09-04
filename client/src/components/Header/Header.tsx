@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeaderLogoSrc from '../../assets/images/header_logo.png';
-import { Link } from 'react-router-dom';
-import BasicBtn from 'components/Button/BasicBtn';
+import { Link, useNavigate } from 'react-router-dom';
+import BasicButton from 'components/Button/BasicButton';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -24,6 +24,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   align-items: center;
 `;
+
 const HeaderWrap = styled.div`
   width: 100%;
   height: 47px;
@@ -33,14 +34,15 @@ const HeaderWrap = styled.div`
   padding: 10px;
   display: flex;
   form {
-    width: 100%;
-    margin: 0 20px;
+    display: flex;
+    flex-grow: 1;
+    margin: 0 8px;
   }
 `;
 
 const SearchInput = styled.input`
   width: 100%;
-  height: 30px;
+  height: 33px;
   border-radius: 3px;
   border: 1px solid rgb(186, 191, 196);
   :focus {
@@ -61,21 +63,9 @@ const Buttons = styled.div`
   align-self: center;
 `;
 
-const LoginBtn = styled.button`
-  padding: 10px;
-  font-size: 0.78rem;
-  background-color: rgb(225, 236, 244);
-  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 70%);
-  border: 1px solid rgb(122, 167, 199);
-  border-radius: 3px;
-  color: hsl(205, 47%, 42%);
-  :hover {
-    cursor: pointer;
-    background-color: #0074cc;
-  }
-`;
-
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <HeaderContainer>
       <Line />
@@ -88,10 +78,21 @@ const Header = () => {
             <SearchInput type="text" placeholder="Search..." />
           </form>
           <Buttons>
-            <Link to={`/login`}>
-              <LoginBtn>Log in</LoginBtn>
-            </Link>
-            <BasicBtn>Sign up</BasicBtn>
+            <BasicButton
+              padding="8px 10.4px"
+              bgColor="hsl(205,46%,92%)"
+              boredrColor="hsl(205,41%,63%)"
+              color="hsl(205,47%,42%)"
+              hoverBgColor="hsl(205,57%,81%)"
+              hoverColor="hsl(205,46%,32%)"
+              margin="0 4px 0 0"
+              onClick={() => navigate('/login')}
+            >
+              Log in
+            </BasicButton>
+            <BasicButton onClick={() => navigate('/signup')}>
+              Sign up
+            </BasicButton>
           </Buttons>
         </Wrapper>
       </HeaderWrap>

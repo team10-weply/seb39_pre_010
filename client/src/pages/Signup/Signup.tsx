@@ -6,9 +6,10 @@ import { ReactComponent as Chat } from 'assets/images/SignupImages/Chat.svg';
 import { ReactComponent as UpDownArrow } from 'assets/images/SignupImages/UpDownArrow.svg';
 import { ReactComponent as Tag } from 'assets/images/SignupImages/Tag.svg';
 import { ReactComponent as Badge } from 'assets/images/SignupImages/Badge.svg';
-import client from 'api';
+import { client } from 'api';
+import BasicButton from 'components/Button/BasicButton';
 
-interface ISignupForm {
+export interface ISignupForm {
   nickname: string;
   email: string;
   password: string;
@@ -33,7 +34,6 @@ const Signup = () => {
 
     try {
       const response = await client.post('/api/v1/users/signup', signupInfo);
-      // const response = await client.get('/api/v1/users/1');
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -113,7 +113,9 @@ const Signup = () => {
               </span>
             </SignupContent>
             <SignupContent>
-              <button>Sign up</button>
+              <BasicButton width="100%" margin="4px 0 32px 0">
+                Sign up
+              </BasicButton>
               <span className="policy">
                 By clicking “Sign up”, you agree to our{' '}
                 <Link to="/">terms of service</Link>,{' '}
@@ -247,18 +249,6 @@ const SignupContent = styled.div`
     font-size: 12px;
     color: rgb(106, 115, 124);
     margin: 4px 0;
-  }
-
-  & button {
-    border: 1px solid rgb(214, 217, 220);
-    width: 100%;
-    margin-top: 4px;
-    margin-bottom: 32px;
-    border-radius: 0.25rem;
-    height: 37.78px;
-    background-color: hsl(206, 100%, 52%);
-    color: white;
-    cursor: pointer;
   }
 
   & a {
