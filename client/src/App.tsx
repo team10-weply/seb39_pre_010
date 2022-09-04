@@ -6,6 +6,7 @@ import ReadQuestion from 'pages/ReadQuestion';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from 'pages/Login/Login';
+import Signup from 'pages/Signup/Signup';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/questions">
           <Route path="" element={<AskQuestion />} />
