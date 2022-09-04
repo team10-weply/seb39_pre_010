@@ -1,7 +1,10 @@
-import axios from 'axios';
+import axios, { AxiosRequestHeaders } from 'axios';
+import { cookie } from 'utils/cookie';
 
-const client = axios.create({
+export const client = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
 });
 
-export default client;
+export const header: AxiosRequestHeaders = {
+  Authrization: `Bearer ${cookie.getItem('accessToken')}`,
+};
