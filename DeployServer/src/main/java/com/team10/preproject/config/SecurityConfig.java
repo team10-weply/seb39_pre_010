@@ -19,8 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private CorsFilter corsFilter;
+
     @Autowired
     private MemberRepository memberRepository;
 
