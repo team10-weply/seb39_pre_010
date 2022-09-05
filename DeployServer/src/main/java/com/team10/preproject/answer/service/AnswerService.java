@@ -31,4 +31,20 @@ public class AnswerService {
         requestAnswer.setQuestion(question);
         return answerRepository.save(requestAnswer);
     }
+
+    @Transactional
+    public Answer answerUpdate(Long answerId, Answer requestAnswer) {
+        Answer answer = answerRepository.findById(answerId)
+                .orElseThrow(() ->{
+                    return new IllegalArgumentException("답변 찾기 실패 : 답변을 찾을 수 없습니다.");
+                });
+        answer.setComment(requestAnswer.getComment());
+        return answerRepository.save(answer);
+    }
+
+    @Transactional
+    public void anserDelete(Long answerId){
+        answerRepository.deleteById(answerId);
+    }
+
 }

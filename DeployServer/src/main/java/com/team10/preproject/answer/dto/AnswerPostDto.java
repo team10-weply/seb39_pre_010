@@ -11,20 +11,23 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnswerResponseDto {
+public class AnswerPostDto {
     private Long answerId;
     private String comment;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private String nickname;
+    private String answerWriter;
 
 
-    public AnswerResponseDto(Answer answer) {
+    public AnswerPostDto(Answer answer) {
         this.answerId = answer.getAnswerId();
         this.comment = answer.getComment();
         this.createdAt = answer.getCreatedAt();
         this.updatedAt = answer.getUpdatedAt();
-        this.nickname = answer.getMember().getNickname();
+        this.answerWriter = answer.getMember().getNickname();
+    }
+
+    public boolean isSameWrite(Member loginUser) {
+        return this.answerWriter.equals(loginUser.getNickname());
     }
 }
-

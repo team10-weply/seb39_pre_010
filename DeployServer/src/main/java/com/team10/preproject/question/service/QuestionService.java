@@ -54,7 +54,7 @@ public class QuestionService {
     public Question questionUpdate(long questionId,Question requestQuestion){
         Question question = questionRepository.findById(questionId)
                 .orElseThrow(() ->{
-                    return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
+                    return new IllegalArgumentException("글 찾기 실패 : 해당 글을 찾을 수 없습니다.");
                 });
         question.setTitle(requestQuestion.getTitle());
         question.setContent(requestQuestion.getContent());
