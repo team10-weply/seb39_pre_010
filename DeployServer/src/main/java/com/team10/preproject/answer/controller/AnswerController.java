@@ -19,7 +19,7 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
-    @PostMapping("/questions/{question-id}/answer")
+    @PostMapping("/api/v1/questions/{question-id}/answer")
     public ResponseEntity answerWrite(@PathVariable("question-id") Long questionId, @RequestBody Answer requestAnswer,
                                       @AuthenticationPrincipal PrincipalDetails principal){
 
