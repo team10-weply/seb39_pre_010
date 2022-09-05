@@ -84,9 +84,7 @@ const Main = () => {
             <SortingQuestions>
               <div>
                 <a href="#">Interesting</a>
-                <a href="#">
-                  <span>307</span> Bountied
-                </a>
+                <a href="#">Bountied</a>
                 <a href="#">Hot</a>
                 <a href="#">Week</a>
                 <a href="#">Month</a>
