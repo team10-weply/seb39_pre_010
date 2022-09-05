@@ -48,14 +48,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         System.out.println("successfulAuthentication");
         PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.findAndRegisterModules();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.findAndRegisterModules();
 
         Long memberId = principalDetails.getMember().getMemberId();
         String username = principalDetails.getMember().getUsername();
+        String nickname = principalDetails.getMember().getNickname();
 
-        String json = objectMapper.writeValueAsString(principalDetails.getMember());
-
+        String json =
+                "{\"memberId\":" + memberId + ",\n\"email\":\"" + username + "\",\n\"nickname\":\"" + nickname + "\"}";
 
         String jwtToken = JWT.create()
                 .withSubject("cos jwt token")

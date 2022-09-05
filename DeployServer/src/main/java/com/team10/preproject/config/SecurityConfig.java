@@ -70,7 +70,6 @@ public class SecurityConfig {
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager);
             jwtAuthenticationFilter.setFilterProcessesUrl("/api/v1/users/login");
             builder
-//                   .addFilter(corsFilter)
                     .addFilter(jwtAuthenticationFilter)
                     .addFilter(new JwtAuthorizationFilter(authenticationManager, memberRepository));
         }
