@@ -5,6 +5,6 @@ export const client = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
 });
 
-export const header: AxiosRequestHeaders = {
+export const headers: AxiosRequestHeaders = {
   Authorization: `Bearer ${cookie.getItem('accessToken')}`,
 };
