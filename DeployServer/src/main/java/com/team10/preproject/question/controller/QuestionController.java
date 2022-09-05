@@ -22,7 +22,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/questions")
+@RequestMapping("/api/v1/questions")
 public class QuestionController {
 
     @Autowired
