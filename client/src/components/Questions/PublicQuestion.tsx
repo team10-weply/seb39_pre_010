@@ -68,17 +68,23 @@ const PublicQuestion = () => {
     const content = editorRef.current?.getInstance().getMarkdown();
     const tag = tagRef.current?.value;
     try {
-      return await client.post(
-        '/api/v1/questions',
-        {
-          title: title,
-          content: content,
-          tag: tag,
-        },
-        { headers }
-      );
+      return await client
+        .post(
+          '/api/v1/questions',
+          {
+            title: title,
+            content: content,
+            tag: tag,
+          },
+          { headers }
+        )
+        .then((res) => {
+          console.log(res);
+          alert('글 작성완료!');
+        });
     } catch (error) {
       console.log(error);
+      alert('글 작성에 실패하였습니다.');
     }
   };
 
