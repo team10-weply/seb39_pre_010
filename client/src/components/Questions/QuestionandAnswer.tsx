@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import WritingToolSrc from '../../assets/images/writingtoolbox_questionandanswer.png';
-import MarkdownSrc from '../../assets/images/markdown_question.png';
 import VoteSrc from '../../assets/images/vote_questionandanswer.png';
-import TagAndId from './TagAndId';
-import Comment from './Comment';
+import CommentWrite from '../Comment/CommentWrite';
 
 const QeustionandAnswerContainer = styled.div`
   padding: 0 16px;
@@ -86,7 +83,7 @@ const QeustionandAnswer: React.FC<{ content: string | undefined }> = (
             <a href="#">question</a> via <a href="#">email</a>,{' '}
             <a href="#">Twitter</a>, or <a href="#">Facebook</a>.
           </p>
-          <Comment />
+          <CommentWrite />
         </YourAnswer>
       </Wrapper>
     </QeustionandAnswerContainer>
