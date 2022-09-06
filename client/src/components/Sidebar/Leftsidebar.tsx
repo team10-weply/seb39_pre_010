@@ -33,7 +33,7 @@ const Nav = styled.nav`
 
 const TeamAd = styled.img`
   display: inline-block;
-  width: 164px;
+  width: 163px;
 `;
 
 const Left = () => {
