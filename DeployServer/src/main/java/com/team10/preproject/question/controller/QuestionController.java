@@ -74,7 +74,9 @@ public class QuestionController {
     @PutMapping("/{question-id}")
     public ResponseEntity questionUpdate(@PathVariable("question-id") Long questionId,
                                          @Valid @RequestBody QuestionDto.Put requestBody){
-        questionService.questionUpdate(questionId, mapper.questionPutToQuesiton(requestBody));
-        return new ResponseEntity<>(HttpStatus.OK);
+        Question question = questionService.questionUpdate(questionId, mapper.questionPutToQuesiton(requestBody));
+        QuestionResponseDto questionResponseDto = mapper.questionToQuestionResponse(question);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(questionResponseDto), HttpStatus.OK);
     }
 }
