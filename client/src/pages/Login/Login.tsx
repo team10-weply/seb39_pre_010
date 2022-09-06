@@ -7,10 +7,7 @@ import { Link } from 'react-router-dom';
 import { cookie } from 'utils/cookie';
 import jwt_decode from 'jwt-decode';
 import BasicButton from 'components/Button/BasicButton';
-interface ILoginForm {
-  username: string;
-  password: string;
-}
+import { ILoginForm } from 'api/types/types';
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState<ILoginForm>({
