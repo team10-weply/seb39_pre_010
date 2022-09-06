@@ -42,7 +42,7 @@ public class Question {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER) // mappedBy - FK가 아니고 컬럼 생성 X
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER) // mappedBy - FK가 아니고 컬럼 생성 X
     @JsonIgnoreProperties("question")
     @OrderBy("id desc")
     private List<Answer> answer;
