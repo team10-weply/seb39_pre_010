@@ -1,10 +1,10 @@
-import axios from 'axios';
+import { Editor } from '@toast-ui/react-editor';
+import { client, headers } from 'api';
 import BasicBtn from 'components/Button/BasicBtn';
 import InputBorder from 'components/Input/InputBorder';
 import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
-import { IListsInfo } from './QuestionList';
 
 const QuestionForm = styled.form``;
 
@@ -57,28 +57,60 @@ const Body = styled.div`
 const Tags = styled.div``;
 
 const PublicQuestion = () => {
-  const [posts, setPosts] = useState<IListsInfo[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = async (event: React.FormEvent) => {
+  const titleRef = useRef<HTMLInputElement>(null);
+  const editorRef = useRef<Editor>(null);
+  // const contentRef = useRef<HTMLTextAreaElement>(null);
+  const tagRef = useRef<HTMLInputElement>(null);
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isLoading && titleRef.current && contentRef.current) {
-      setIsLoading(true);
-      const title = titleRef.current.value;
-      const content = contentRef.current.value;
-      const response = await axios
-        .post('/questions', { title: title, content: content })
+    const title = titleRef.current?.value;
+    const content = editorRef.current?.getInstance().getMarkdown();
+    const tag = tagRef.current?.value;
+    try {
+      return await client
+        .post(
+          '/api/v1/questions',
+          {
+            title: title,
+            content: content,
+            tag: tag,
+          },
+          { headers }
+        )
         .then((res) => {
-          setIsLoading(false);
-          setPosts([res.data, ...posts]);
+          console.log(res);
           alert('글 작성완료!');
-        })
-        .catch((err) => alert('글 작성에 실패하였습니다.'));
+        });
+    } catch (error) {
+      console.log(error);
+      alert('글 작성에 실패하였습니다.');
     }
   };
 
-  const titleRef = useRef<HTMLInputElement>(null);
-  const contentRef = useRef<HTMLTextAreaElement>(null);
-  const tagRef = useRef<HTMLInputElement>(null);
+  // const [posts, setPosts] = useState<IListsInfo[]>([]);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  // const onSubmit = async (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   if (!isLoading && titleRef.current && contentRef.current) {
+  //     setIsLoading(true);
+  //     const title = titleRef.current.value;
+  //     const content = contentRef.current.value;
+
+  //     const response = await client
+  //       .post('/questions', {
+  //         title: title,
+  //         content: content,
+  //       })
+  //       .then((res) => {
+  //         setIsLoading(false);
+  //         setPosts([res.data.content, ...posts]);
+  //         alert('글 작성완료!');
+  //       })
+  //       .catch((err) => alert('글 작성에 실패하였습니다.'));
+  //   }
+  // };
 
   return (
     <QuestionForm onSubmit={onSubmit}>
@@ -100,7 +132,21 @@ const PublicQuestion = () => {
             Include all the information someone would need to answer your
             question
           </p>
-          <textarea cols={92} rows={15} ref={contentRef} />
+          {/* <textarea cols={92} rows={15} ref={contentRef} /> */}
+          <Editor
+            initialValue=""
+            height="250px"
+            initialEditType="markdown"
+            hideModeSwitch={true}
+            useCommandShortcut={true}
+            ref={editorRef}
+            autofocus={false}
+            toolbarItems={[
+              ['bold', 'italic'],
+              ['link', 'quote', 'codeblock', 'image'],
+              ['ol', 'ul', 'heading', 'hr'],
+            ]}
+          />
         </Body>
         <Tags>
           <h2>Tags</h2>

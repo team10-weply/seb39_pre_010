@@ -1,11 +1,10 @@
 import LeftSide from 'components/Sidebar/Leftsidebar';
-import RightSideSrc from '../assets/images/rightbar_questionandanswer.png';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import QeustionandAnswer from 'components/Questions/QuestionandAnswer';
 import BasicBtn from 'components/Button/BasicBtn';
-import axios from 'axios';
+import { client } from 'api';
 
 const Main_container = styled.div`
   padding-top: 50px;
@@ -83,8 +82,8 @@ const ReadQuestion = () => {
   const { id } = useParams();
 
   const getQuestionandAnswer = async () => {
-    const response = await axios
-      .get(`http://07d6-118-32-35-58.ngrok.io/questions/${id}`)
+    const response = await client
+      .get(`/api/v1/questions/${id}`)
       .then((res: any) => setQuestioninfo(res.data))
       .catch((err: any) => console.log(err));
     setLoading(false);
