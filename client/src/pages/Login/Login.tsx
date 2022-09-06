@@ -3,18 +3,16 @@ import styled from 'styled-components';
 import Logo from 'assets/images/Logo.svg';
 import SocialLoginButton from 'components/SocialLoginButton/SocialLoginButton';
 import { client } from 'api';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { cookie } from 'utils/cookie';
 import jwt_decode from 'jwt-decode';
 import BasicButton from 'components/Button/BasicButton';
-
 interface ILoginForm {
   username: string;
   password: string;
 }
 
 const Login = () => {
-  const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState<ILoginForm>({
     username: '',
     password: '',
@@ -35,7 +33,7 @@ const Login = () => {
 
       cookie.setItem('accessToken', token);
       localStorage.setItem('user', JSON.stringify(jwt_decode(token)));
-      // navigate('/');
+      window.location.replace('/');
 
       console.log(response);
 
