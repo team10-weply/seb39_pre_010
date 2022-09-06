@@ -1,7 +1,6 @@
 package com.team10.preproject.answer.dto;
 
 import com.team10.preproject.answer.entity.Answer;
-import com.team10.preproject.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

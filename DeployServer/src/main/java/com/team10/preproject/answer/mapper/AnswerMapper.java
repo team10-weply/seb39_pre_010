@@ -1,7 +1,6 @@
 package com.team10.preproject.answer.mapper;
 
 
-import com.team10.preproject.answer.dto.AnswerPostDto;
 import com.team10.preproject.answer.dto.AnswerPutDto;
 import com.team10.preproject.answer.dto.AnswerResponseDto;
 import com.team10.preproject.answer.entity.Answer;

@@ -5,7 +5,6 @@ import com.team10.preproject.answer.entity.Answer;
 import com.team10.preproject.question.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -37,7 +36,7 @@ public class QuestionResponseDto {
     }
 }
 
-//
+
 //    @Data
 //    @NoArgsConstructor
 //    @AllArgsConstructor
@@ -45,7 +44,7 @@ public class QuestionResponseDto {
 //        private Long questionId;
 //        private String title;
 //        private String content;
-//        private Long answerId;
+//        private List answerId;
 //        private String comment;
 //        private LocalDateTime createdAt;
 //        private LocalDateTime updatedAt;
