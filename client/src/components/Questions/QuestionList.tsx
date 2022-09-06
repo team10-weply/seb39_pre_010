@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TagAndId from './TagAndId';
-import dummy from '../../assets/data/dummy.json';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { client } from 'api';
 
 const QuestionRow = styled.div`
   border-top: 1px solid rgb(227, 230, 232);
@@ -60,10 +59,10 @@ const QuestionList = () => {
   const [listsinfo, setListsinfo] = useState<IListsInfo[]>([]);
 
   const getQuestionLists = async () => {
-    const response = await axios
-      .get('http://07d6-118-32-35-58.ngrok.io/questions')
-      .then((res: any) => setListsinfo(res.data.content))
-      .catch((err: any) => console.log(err));
+    const response = await client
+      .get('/api/v1/questions')
+      .then((res) => setListsinfo(res.data.content))
+      .catch((err) => console.log(err));
     setLoading(false);
     console.log(listsinfo);
   };
