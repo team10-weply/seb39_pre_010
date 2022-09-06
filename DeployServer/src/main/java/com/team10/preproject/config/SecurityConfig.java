@@ -32,6 +32,10 @@ public class SecurityConfig {
         http.csrf().disable();
         http.cors();
         http.headers().frameOptions().disable();
+        http
+                .authorizeRequests()
+                .antMatchers("/api/v1/questions/**")
+                .permitAll();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()

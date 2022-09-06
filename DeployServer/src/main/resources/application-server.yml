@@ -3,7 +3,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop  # (1) 스키마 자동 생성
+      ddl-auto: none  # (1) 스키마 자동 생성
     show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
@@ -11,5 +11,5 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: guest
-    url: jdbc:mysql://localhost:3306/coffee_order?allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/test?allowPublicKeyRetrieval=true&characterEncoding=UTF-8
     username: guest
