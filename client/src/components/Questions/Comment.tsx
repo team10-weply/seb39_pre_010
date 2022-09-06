@@ -14,7 +14,7 @@ const Comment: React.FC = () => {
     const comment = editorRef.current?.getInstance().getMarkdown();
     try {
       return await client.post(
-        '/api/v1/questions/1/answer',
+        '/api/v1/questions/1/answers',
         {
           comment,
         },
