@@ -1,34 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { client } from 'api';
+import { IQuestionDetail } from 'api/types/types';
 import { CreateAsyncThunkTypes } from 'redux/store';
 
-export interface IComment {
-  comment: string;
-  createdAt: string;
-  member: IMember;
-}
-
-export interface IMember {
-  email: string;
-  memberId: number;
-  nickname: string;
-  createdAt: number;
-  modifiedAt: number;
-  password: string;
-}
-
-export interface IDetail {
-  content: string;
-  createdAt: number;
-  questionId: number;
-  title: string;
-  updatedAt: number;
-  member: IMember;
-  answer: IComment;
-}
-
 export const getDetailThunk = createAsyncThunk<
-  IDetail,
+  IQuestionDetail,
   number,
   CreateAsyncThunkTypes
 >('question/getDetail', async (id: number) => {

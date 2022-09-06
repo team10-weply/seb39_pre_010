@@ -1,35 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IQuestionDetail } from 'api/types/types';
 import { getDetailThunk } from 'redux/actions/detailAction';
-
-export interface IComment {
-  comment: string;
-  createdAt: string;
-  member: IMember;
-}
-
-export interface IMember {
-  email: string;
-  memberId: number;
-  nickname: string;
-  createdAt: number;
-  modifiedAt: number;
-  password: string;
-}
-
-export interface IDetail {
-  content: string;
-  createdAt: number;
-  questionId: number;
-  title: string;
-  updatedAt: number;
-  member: IMember;
-  answer: IComment;
-}
 
 export interface IDetailSlice {
   isLoading: boolean;
   error: string;
-  detail: IDetail | null;
+  detail: IQuestionDetail | null;
 }
 
 const initialState: IDetailSlice = {

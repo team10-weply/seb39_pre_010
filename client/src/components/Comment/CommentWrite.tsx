@@ -4,9 +4,11 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
 import BasicButton from 'components/Button/BasicButton';
 import { client, headers } from 'api';
+import { useParams } from 'react-router-dom';
 
-const Comment: React.FC = () => {
+const CommentWrite: React.FC = () => {
   const editorRef = useRef<Editor>(null);
+  const { id } = useParams();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -14,7 +16,7 @@ const Comment: React.FC = () => {
     const comment = editorRef.current?.getInstance().getMarkdown();
     try {
       return await client.post(
-        '/api/v1/questions/1/answers',
+        `/api/v1/questions/${id}/answers`,
         {
           comment,
         },
@@ -49,7 +51,7 @@ const Comment: React.FC = () => {
   );
 };
 
-export default Comment;
+export default CommentWrite;
 
 const Container = styled.form`
   max-width: 1100px;

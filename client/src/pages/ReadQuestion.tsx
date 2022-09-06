@@ -1,10 +1,11 @@
 import LeftSide from 'components/Sidebar/Leftsidebar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import QeustionandAnswer from 'components/Questions/QuestionandAnswer';
 import BasicBtn from 'components/Button/BasicBtn';
-import { client } from 'api';
+import { RootState, useAppDispatch, useAppSelector } from 'redux/store';
+import { getDetailThunk } from 'redux/actions/detailAction';
 
 const Main_container = styled.div`
   padding-top: 50px;
@@ -12,7 +13,6 @@ const Main_container = styled.div`
   background: none;
   display: flex;
   margin: 0 auto;
-  height: 100vh;
 `;
 
 const QuestionLists = styled.div`
@@ -61,51 +61,30 @@ const AskedandModified = styled.div`
 `;
 
 const ReadQuestion = () => {
-  interface IDetailInfo {
-    content: string;
-    createdAt: number;
-    questionId: number;
-    title: string;
-    updatedAt: number;
-    member: IMember;
-  }
-  interface IMember {
-    email: string;
-    memberId: number;
-    nickname: string;
-    createdAt: number;
-    modifiedAt: number;
-    password: string;
-  }
-  const [loading, setLoading] = useState(true);
-  const [questioninfo, setQuestioninfo] = useState<IDetailInfo | null>(null);
   const { id } = useParams();
-
-  const getQuestionandAnswer = async () => {
-    const response = await client
-      .get(`/api/v1/questions/${id}`)
-      .then((res: any) => setQuestioninfo(res.data))
-      .catch((err: any) => console.log(err));
-    setLoading(false);
-    console.log(questioninfo);
-  };
+  const dispatch = useAppDispatch();
+  const { detail, isLoading } = useAppSelector(
+    (state: RootState) => state.detail
+  );
 
   useEffect(() => {
-    getQuestionandAnswer();
+    dispatch(getDetailThunk(Number(id)));
   }, []);
+
+  console.log('detail', detail);
 
   return (
     <Main_container>
       <LeftSide />
       <QuestionLists>
         <InnerWrapper>
-          {loading ? (
+          {isLoading || !detail ? (
             <h1>Loading...</h1>
           ) : (
             <div>
               <Title>
                 <TopQuestions>
-                  <h1>{questioninfo?.title}</h1>
+                  <h1>{detail.title}</h1>
                   <Link to="/questions">
                     <BasicBtn>Ask Question</BasicBtn>
                   </Link>
@@ -123,7 +102,7 @@ const ReadQuestion = () => {
                 </AskedandModified>
               </Title>
               <Content>
-                <QeustionandAnswer content={questioninfo?.content} />
+                <QeustionandAnswer content={detail.content} />
               </Content>
             </div>
           )}
