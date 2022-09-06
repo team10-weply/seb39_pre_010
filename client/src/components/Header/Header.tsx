@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import HeaderLogoSrc from '../../assets/images/header_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import BasicButton from 'components/Button/BasicButton';
+import { user } from 'utils/user';
+import { cookie } from 'utils/cookie';
+import { client, headers } from 'api';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -65,6 +68,19 @@ const Buttons = styled.div`
 
 const Header = () => {
   const navigate = useNavigate();
+  const userInfo = user.getUser();
+
+  const handleLogoutClick = async () => {
+    try {
+      const response = await client.get('/api/v1/users/logout', { headers });
+      user.deleteUser();
+      cookie.removeItem('accessToken');
+      window.location.replace('/');
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <HeaderContainer>
@@ -78,21 +94,27 @@ const Header = () => {
             <SearchInput type="text" placeholder="Search..." />
           </form>
           <Buttons>
-            <BasicButton
-              padding="8px 10.4px"
-              bgColor="hsl(205,46%,92%)"
-              boredrColor="hsl(205,41%,63%)"
-              color="hsl(205,47%,42%)"
-              hoverBgColor="hsl(205,57%,81%)"
-              hoverColor="hsl(205,46%,32%)"
-              margin="0 4px 0 0"
-              onClick={() => navigate('/login')}
-            >
-              Log in
-            </BasicButton>
-            <BasicButton onClick={() => navigate('/signup')}>
-              Sign up
-            </BasicButton>
+            {userInfo ? (
+              <BasicButton onClick={handleLogoutClick}>Log out</BasicButton>
+            ) : (
+              <>
+                <BasicButton
+                  padding="8px 10.4px"
+                  bgColor="hsl(205,46%,92%)"
+                  boredrColor="hsl(205,41%,63%)"
+                  color="hsl(205,47%,42%)"
+                  hoverBgColor="hsl(205,57%,81%)"
+                  hoverColor="hsl(205,46%,32%)"
+                  margin="0 4px 0 0"
+                  onClick={() => navigate('/login')}
+                >
+                  Log in
+                </BasicButton>
+                <BasicButton onClick={() => navigate('/signup')}>
+                  Sign up
+                </BasicButton>
+              </>
+            )}
           </Buttons>
         </Wrapper>
       </HeaderWrap>
