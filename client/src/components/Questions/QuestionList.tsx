@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TagAndId from './TagAndId';
 import { Link } from 'react-router-dom';
 import { client } from 'api';
+import { IQuestionList } from 'api/types/types';
 
 const QuestionRow = styled.div`
   border-top: 1px solid rgb(227, 230, 232);
@@ -44,27 +45,19 @@ const QuestionTitleAear = styled.div`
   }
 `;
 
-export interface IListsInfo {
-  content: string;
-  createdAt: number;
-  email: string;
-  memberId: number;
-  nickname: string;
-  questionId: number;
-  title: string;
-  updatedAt: number;
-}
 const QuestionList = () => {
   const [loading, setLoading] = useState(true);
-  const [listsinfo, setListsinfo] = useState<IListsInfo[]>([]);
+  const [listsinfo, setListsinfo] = useState<IQuestionList[]>([]);
 
   const getQuestionLists = async () => {
-    const response = await client
-      .get('/api/v1/questions')
-      .then((res) => setListsinfo(res.data.content))
-      .catch((err) => console.log(err));
-    setLoading(false);
-    console.log(listsinfo);
+    try {
+      setLoading(false);
+      return await client
+        .get('/api/v1/questions')
+        .then((res: any) => setListsinfo(res.data.content));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
