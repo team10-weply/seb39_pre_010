@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SocialLoginButton from 'components/SocialLoginButton/SocialLoginButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Chat } from 'assets/images/SignupImages/Chat.svg';
 import { ReactComponent as UpDownArrow } from 'assets/images/SignupImages/UpDownArrow.svg';
 import { ReactComponent as Tag } from 'assets/images/SignupImages/Tag.svg';
@@ -16,6 +16,7 @@ export interface ISignupForm {
 }
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [signupInfo, setSignupInfo] = useState<ISignupForm>({
     nickname: '',
     email: '',
@@ -34,6 +35,7 @@ const Signup = () => {
 
     try {
       const response = await client.post('/api/v1/users/signup', signupInfo);
+      navigate('/login');
       console.log(response);
     } catch (error) {
       console.log(error);

@@ -16,7 +16,7 @@ const Main_container = styled.div`
 `;
 
 const QuestionLists = styled.div`
-  padding: 24px 0px;
+  padding: 24px 16px;
   width: 100%;
 
   justify-content: space-between;
@@ -102,7 +102,12 @@ const ReadQuestion = () => {
                 </AskedandModified>
               </Title>
               <Content>
-                <QeustionandAnswer content={detail.content} />
+                <QeustionandAnswer
+                  content={detail.content}
+                  answer={detail.answer}
+                  createdAt={detail.createdAt}
+                  author={detail.member}
+                />
               </Content>
             </div>
           )}
