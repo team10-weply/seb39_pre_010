@@ -115,7 +115,6 @@ const QeustionandAnswer = ({ content, createdAt, author, answer }: Props) => {
       console.log(error);
     }
   };
-  console.log(answer);
   return (
     <QeustionandAnswerContainer>
       <Wrapper>
