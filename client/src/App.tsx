@@ -7,7 +7,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from 'pages/Login/Login';
 import Signup from 'pages/Signup/Signup';
-import Edit from 'components/Questions/Edit';
+import Edit from 'pages/Edit/Edit';
 
 function App() {
   return (
