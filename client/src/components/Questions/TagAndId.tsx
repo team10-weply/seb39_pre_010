@@ -24,9 +24,12 @@ const Tag = styled.div`
   }
 `;
 
-const Id = styled.div``;
+const Id = styled.div`
+  font-size: 13px;
+  color: hsl(210, 8%, 45%);
+`;
 
-const TagAndId: React.FC<{ email: string; createdAt: number }> = (props) => {
+const TagAndId: React.FC<{ nickname: string; createdAt: number }> = (props) => {
   return (
     <>
       <TagAndId_wrapper>
@@ -44,9 +47,9 @@ const TagAndId: React.FC<{ email: string; createdAt: number }> = (props) => {
 
         <Id>
           <span>
-            email : {props.email}
+            {props.nickname}
             <br />
-            작성시간 : {props.createdAt}
+            asked {props.createdAt}
           </span>
         </Id>
       </TagAndId_wrapper>

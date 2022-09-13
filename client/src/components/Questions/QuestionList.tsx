@@ -52,9 +52,9 @@ const QuestionList = () => {
   const getQuestionLists = async () => {
     try {
       setLoading(false);
-      return await client
-        .get('/api/v1/questions')
-        .then((res: any) => setListsinfo(res.data.content));
+      return await client.get('/api/v1/questions').then((res: any) => {
+        setListsinfo(res.data.content);
+      });
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +83,7 @@ const QuestionList = () => {
                 </Link>
 
                 <TagAndId
-                  email={question.email}
+                  nickname={question.nickname}
                   createdAt={question.createdAt}
                 />
               </QuestionTitleAear>
