@@ -15,13 +15,15 @@ const CommentWrite: React.FC = () => {
 
     const comment = editorRef.current?.getInstance().getMarkdown();
     try {
-      return await client.post(
+      const response = await client.post(
         `/api/v1/questions/${id}/answers`,
         {
           comment,
         },
         { headers }
       );
+      window.location.reload();
+      return response;
     } catch (error) {
       console.log(error);
     }
