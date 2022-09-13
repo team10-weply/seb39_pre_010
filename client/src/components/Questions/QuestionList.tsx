@@ -83,7 +83,7 @@ const QuestionList = () => {
                 </Link>
 
                 <TagAndId
-                  memberid={question.memberId}
+                  email={question.email}
                   createdAt={question.createdAt}
                 />
               </QuestionTitleAear>
