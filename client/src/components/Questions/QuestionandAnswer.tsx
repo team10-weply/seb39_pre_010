@@ -115,6 +115,7 @@ const QeustionandAnswer = ({ content, createdAt, author, answer }: Props) => {
       console.log(error);
     }
   };
+  console.log(answer);
   return (
     <QeustionandAnswerContainer>
       <Wrapper>
@@ -160,6 +161,8 @@ const QeustionandAnswer = ({ content, createdAt, author, answer }: Props) => {
                     comment={el.comment}
                     member={el.member}
                     createdAt={el.createdAt}
+                    userInfo={userInfo ? userInfo.username : null}
+                    answerId={el.answerId}
                   />
                 );
               })}
