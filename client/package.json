@@ -56,8 +56,5 @@
     "eslint": "^8.22.0",
     "eslint-plugin-react": "^7.31.0",
     "prettier": "^2.7.1"
-  },
-  "resolutions" :{
- "nth-check":"2.0.1"
-}
+  }
 }
