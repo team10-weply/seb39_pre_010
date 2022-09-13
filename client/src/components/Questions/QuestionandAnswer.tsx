@@ -1,5 +1,10 @@
+import { client } from 'api';
+import { IComment, IMember } from 'api/types/types';
+import Comment from 'components/Comment/Comment';
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { user } from 'utils/user';
 import VoteSrc from '../../assets/images/vote_questionandanswer.png';
 import CommentWrite from '../Comment/CommentWrite';
 
@@ -23,7 +28,9 @@ const Wrapper = styled.div`
 const VoteandQuestion = styled.div`
   display: flex;
 `;
-const YourQuestion = styled.div``;
+const YourQuestion = styled.div`
+  width: 100%;
+`;
 const AddComments = styled.div`
   margin-top: 3rem;
   a {
@@ -61,16 +68,82 @@ const YourAnswer = styled.div`
   }
 `;
 
-const QeustionandAnswer: React.FC<{ content: string | undefined }> = (
-  props
-) => {
+const CreateInfo = styled.div`
+  display: flex;
+  font-size: 13px;
+  color: hsl(210, 8%, 45%);
+  padding: 1rem 0;
+  & div {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  & .function {
+    margin: -4px;
+  }
+
+  & .function > span {
+    margin: 4px;
+  }
+
+  & .author {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+`;
+
+interface Props {
+  content: string;
+  createdAt: number;
+  author: IMember;
+  answer: IComment[];
+}
+
+const QeustionandAnswer = ({ content, createdAt, author, answer }: Props) => {
+  const navigate = useNavigate();
+  const userInfo = user.getUser() ? JSON.parse(user.getUser()!) : null;
+  const { id } = useParams();
+
+  const handleDelete = async () => {
+    try {
+      const response = await client.delete(`/api/v1/questions/${id}`);
+      navigate('/');
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <QeustionandAnswerContainer>
       <Wrapper>
         <VoteandQuestion>
           <VotePic src={VoteSrc}></VotePic>
           <YourQuestion>
-            <p>{props.content}</p>
+            <p>{content}</p>
+            <CreateInfo>
+              {userInfo?.username === author.email ? (
+                <div className="function">
+                  <span>Share</span>
+                  <span onClick={() => navigate(`/questions/edit/${id}`)}>
+                    Edit
+                  </span>
+                  <span>Follow</span>
+                  <span onClick={handleDelete}>Delete</span>
+                </div>
+              ) : (
+                <div className="function">
+                  <span>Share</span>
+                  <span>Follow</span>
+                </div>
+              )}
+
+              <div className="author">
+                <span>asked: {createdAt}</span>
+                <span>{author.nickname}</span>
+              </div>
+            </CreateInfo>
             <AddComments>
               <a href="#">Add a comment</a>
             </AddComments>
@@ -78,11 +151,27 @@ const QeustionandAnswer: React.FC<{ content: string | undefined }> = (
         </VoteandQuestion>
 
         <YourAnswer>
-          <p>
-            Know someone who can answer? Share a link to this{' '}
-            <a href="#">question</a> via <a href="#">email</a>,{' '}
-            <a href="#">Twitter</a>, or <a href="#">Facebook</a>.
-          </p>
+          {answer.length > 0 ? (
+            <>
+              {answer.map((el: IComment) => {
+                return (
+                  <Comment
+                    key={el.answerId}
+                    comment={el.comment}
+                    member={el.member}
+                    createdAt={el.createdAt}
+                  />
+                );
+              })}
+            </>
+          ) : (
+            <p>
+              Know someone who can answer? Share a link to this{' '}
+              <a href="#">question</a> via <a href="#">email</a>,{' '}
+              <a href="#">Twitter</a>, or <a href="#">Facebook</a>.
+            </p>
+          )}
+
           <CommentWrite />
         </YourAnswer>
       </Wrapper>

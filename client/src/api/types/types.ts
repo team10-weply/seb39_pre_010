@@ -21,12 +21,12 @@ export interface IQuestionDetail {
   member: IMember;
   createdAt: number;
   updatedAt: number;
+  answer: IComment[];
 }
 
 export interface IMember {
   memberId: number;
   email: string;
-  password: string;
   nickname: string;
   createdAt: number;
   modifiedAt: number;
@@ -34,6 +34,7 @@ export interface IMember {
 
 export interface IComment {
   comment: string;
+  answerId: number;
   member: IMember;
   createdAt: string;
 }

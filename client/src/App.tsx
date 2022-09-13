@@ -7,6 +7,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from 'pages/Login/Login';
 import Signup from 'pages/Signup/Signup';
+import Edit from 'components/Questions/Edit';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/questions">
           <Route path="" element={<AskQuestion />} />
           <Route path=":id" element={<ReadQuestion />} />
+          <Route path="edit/:id" element={<Edit />} />
         </Route>
       </Routes>
       <Footer />
