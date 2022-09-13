@@ -46,6 +46,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/api/v1/users/login")
                 .permitAll()
+                .antMatchers("/api/v1/users/logout")
+                .permitAll()
                 .antMatchers("/api/v1/users/signup")
                 .permitAll()
                 .antMatchers("/api/v1/users/**")
