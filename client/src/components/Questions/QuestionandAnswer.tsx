@@ -109,16 +109,12 @@ const QeustionandAnswer = ({ content, createdAt, author, answer }: Props) => {
     try {
       const response = await client.delete(`/api/v1/questions/${id}`);
       navigate('/');
-      console.log(response);
 
       return response.data;
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(typeof userInfo);
-  console.log(answer);
   return (
     <QeustionandAnswerContainer>
       <Wrapper>

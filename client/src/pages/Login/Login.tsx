@@ -32,8 +32,6 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(jwt_decode(token)));
       window.location.replace('/');
 
-      console.log(response);
-
       return response.data;
     } catch (error) {
       console.log(error);

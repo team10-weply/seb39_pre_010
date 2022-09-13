@@ -4,6 +4,7 @@ import BasicBtn from 'components/Button/BasicBtn';
 import InputBorder from 'components/Input/InputBorder';
 import React, { useEffect, useState } from 'react';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const QuestionForm = styled.form``;
@@ -61,6 +62,7 @@ const PublicQuestion = () => {
   const editorRef = useRef<Editor>(null);
   // const contentRef = useRef<HTMLTextAreaElement>(null);
   const tagRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -79,12 +81,13 @@ const PublicQuestion = () => {
           { headers }
         )
         .then((res) => {
-          console.log(res);
           alert('글 작성완료!');
+          navigate('/');
         });
     } catch (error) {
       console.log(error);
       alert('글 작성에 실패하였습니다.');
+      navigate(-1);
     }
   };
 
