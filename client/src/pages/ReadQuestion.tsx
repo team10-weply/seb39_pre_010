@@ -71,8 +71,6 @@ const ReadQuestion = () => {
     dispatch(getDetailThunk(Number(id)));
   }, []);
 
-  console.log('detail', detail);
-
   return (
     <Main_container>
       <LeftSide />

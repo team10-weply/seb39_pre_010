@@ -36,7 +36,8 @@ const Signup = () => {
     try {
       const response = await client.post('/api/v1/users/signup', signupInfo);
       navigate('/login');
-      console.log(response);
+
+      return response;
     } catch (error) {
       console.log(error);
     }
