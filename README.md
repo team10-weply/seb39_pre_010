@@ -2,6 +2,8 @@
 
 [배포 링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
 
+*비밀번호는 반드시 8-20자의 문자열이며 영문 대문자, 소문자, 특수문자가 하나씩 포함되어야 합니다.
+
 ### 기능
 
 - 회원가입, 로그인, 로그아웃을 할 수 있습니다.
