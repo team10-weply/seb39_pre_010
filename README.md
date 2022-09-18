@@ -1,9 +1,5 @@
 # Team10 : cloning stack overflow
 
-## pre-project
-
-### cloning stack overflow
-
 [배포링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
 
 #### 기능
@@ -28,6 +24,12 @@
 
 - FE: 안태경([TaekyungAn](https://github.com/TaekyungAn)), 정혜선([seonnn](https://github.com/seonnn))
 - BE: 민지원([x2d7751347m](https://github.com/x2d7751347m)), 장민욱([black2code](https://github.com/black2code))
+
+---
+
+### Skills
+
+- spring, spring security, mysql
 
 ---
 
