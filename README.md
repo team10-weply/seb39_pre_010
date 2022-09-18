@@ -29,7 +29,7 @@
 
 ### Skills
 
-- spring, spring security, mysql
+- spring, spring security, mysql, aws
 
 ---
 
