@@ -2,7 +2,7 @@
 
 [배포링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
 
-#### 기능
+### 기능
 
 - 회원가입, 로그인, 로그아웃을 할 수 있습니다.
 - 전체 게시글 목록 조회, 개별 게시글 상세 내용 조회를 할 수 있습니다.
