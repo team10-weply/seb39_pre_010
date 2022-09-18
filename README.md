@@ -1,10 +1,13 @@
-# Team10 : codestates-project
+# Team10 : cloning stack overflow
 
 ## 1. pre-project
 
 ### cloning stack overflow
 
 [배포링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
+
+- 회원가입, 로그인, 로그아웃을 할 수 있습니다
+- 질문 등록, 답변 등록, 질문 수정, 답변 수정, 질문 삭제, 답변 삭제를 할 수 있습니다
 
 <br />
 
