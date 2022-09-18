@@ -10,7 +10,7 @@
 - Todo에 기한과 카테고리를 설정할 수 있습니다.
 - create-react-app으로 간편한 번들링과 배포가 가능합니다.
 - Spring Boot로 쉽게 서버 배포를 할 수 있습니다.
-|<img src=https://user-images.githubusercontent.com/62936128/190893345-941715f2-1d3b-4e26-a195-1deb047a9b83.png>|
+|<img src="https://user-images.githubusercontent.com/62936128/190893345-941715f2-1d3b-4e26-a195-1deb047a9b83.png" width="300px" height="300px">|
 
 
 ---
