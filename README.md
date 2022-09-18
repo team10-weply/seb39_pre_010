@@ -1,6 +1,6 @@
 # Team10 : cloning stack overflow
 
-## 1. pre-project
+## pre-project
 
 ### cloning stack overflow
 
