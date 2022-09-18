@@ -1,4 +1,4 @@
-# Team10 : cloning stack overflow
+# Team10 : Cloning stack overflow
 
 [배포링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
 
@@ -29,7 +29,7 @@
 
 ### Skills
 
-- spring, spring security, mysql, aws
+- Back-end : spring, spring security, mysql, aws
 
 ---
 
