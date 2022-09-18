@@ -1,6 +1,6 @@
 # Team10 : Cloning stack overflow
 
-[배포링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
+[배포 링크](http://pre-project-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com/) 
 
 ### 기능
 
