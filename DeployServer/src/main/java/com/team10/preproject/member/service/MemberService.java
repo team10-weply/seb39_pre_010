@@ -1,8 +1,8 @@
 package com.team10.preproject.member.service;
 
-import com.team10.preproject.exception.BusinessLogicException;
-import com.team10.preproject.exception.ExceptionCode;
-import com.team10.preproject.helper.event.MemberRegistrationApplicationEvent;
+import com.team10.preproject.global.exception.BusinessLogicException;
+import com.team10.preproject.global.exception.ExceptionCode;
+import com.team10.preproject.global.helper.event.MemberRegistrationApplicationEvent;
 import com.team10.preproject.member.entity.Member;
 import com.team10.preproject.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
