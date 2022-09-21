@@ -1,6 +1,6 @@
 package com.team10.preproject.member.controller;
 
-import com.team10.preproject.dto.SingleResponseDto;
+import com.team10.preproject.global.dto.SingleResponseDto;
 import com.team10.preproject.member.dto.MemberDto;
 import com.team10.preproject.member.entity.Member;
 import com.team10.preproject.member.mapper.MemberMapper;
