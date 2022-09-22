@@ -31,7 +31,7 @@
 
 ### Skills
 
-- Back-end : Back-end : Java, Spring Framework, AWS, Git, MySQL, Github, JPA
+- Back-end : Java, Spring Framework, AWS, Git, MySQL, Github, JPA
 
 ---
 
