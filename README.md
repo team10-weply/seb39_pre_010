@@ -1,6 +1,6 @@
 # Team10 : Cloning stack overflow
 
-[배포 링크](http://cs-main-bucket.s3-website.ap-northeast-2.amazonaws.com) 
+[배포 링크](http://cs-main-bucket.s3-website.ap-northeast-2.amazonaws.com) (현재 서버 운영은 중단하였습니다.)
 
 *회원 가입 시 비밀번호는 반드시 8-20자의 문자열이어야 하며 영문 대문자, 소문자, 특수문자가 각각 한 문자씩 포함되어야 합니다.
 
